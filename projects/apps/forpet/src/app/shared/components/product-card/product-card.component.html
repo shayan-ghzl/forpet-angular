@@ -12,7 +12,7 @@
         <ng-template #soon>
             <h4>بزودی</h4>
         </ng-template>
-        
+
     </div>
 
     <a class="product-name" [routerLink]="['/product',product.id, product.pageUrl || '']" [state]="product">
@@ -31,10 +31,8 @@
             </li>
         </ul>
     </div>
-
     <div class="add-to-card">
-        <button [disabled]="!product.userGroupPrice?.price || product.stock<=0" class="btn btn-forpet-tertiary btn-block" *ngIf="productCount==0;else addedBefore"
-            (click)="addToBasket(1)">
+        <button [disabled]="!product.userGroupPrice?.price || product.stock<=0" class="btn btn-forpet-tertiary btn-block" *ngIf="productCount==0;else addedBefore" (click)="addToBasket(1)">
             <span>
                 افزودن به سبد خرید
             </span>

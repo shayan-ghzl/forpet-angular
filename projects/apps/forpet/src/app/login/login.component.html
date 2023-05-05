@@ -1,11 +1,10 @@
 <section class="authentication">
     <div class="authentication-container">
         <div class="branding-row-span">
-            <span>
+            <a routerLink="/home">
                 <img src="./assets/images/logo.png" width="80" alt="logo">
-            </span>
-            <button *ngIf="_formActive!=1" (click)="formActive=1" type="button"
-                class="btn back-btn">
+            </a>
+            <button *ngIf="_formActive!=1" (click)="formActive=1" type="button" class="btn back-btn">
                 <i class="icon-forpet-arrow-right"></i>
             </button>
         </div>
@@ -16,20 +15,15 @@
                     <ng-container *ngSwitchCase="1">
                         <div class="form-field">
                             <label>لطفا شماره موبایل خود را وارد کنید:</label>
-                            <input class="form-control field-mobile" type="text"
-                                formControlName="mobileFormCtrl"
-                                autocomplete="off">
-                            <small class="invalid-feedback"
-                                *ngIf="signinFormGroup.controls['mobileFormCtrl'].invalid
+                            <input class="form-control field-mobile" type="text" formControlName="mobileFormCtrl" autocomplete="off">
+                            <small class="invalid-feedback" *ngIf="signinFormGroup.controls['mobileFormCtrl'].invalid
                                 &&
                                 signinFormGroup.controls['mobileFormCtrl'].touched">
                                 شماره موبایل نادرست است.
                             </small>
                         </div>
-                        <button type="submit"
-                            [disabled]="signinFormGroup.controls['mobileFormCtrl'].invalid
-                            || buttonSpinnerSwitch"
-                            class="btn btn-block btn-forpet-tertiary">
+                        <button type="submit" [disabled]="signinFormGroup.controls['mobileFormCtrl'].invalid
+                            || buttonSpinnerSwitch" class="btn btn-block btn-forpet-tertiary">
                             <div *ngIf="buttonSpinnerSwitch;else spinnerOff"
                                 class="dots-container"><div
                                     class="dots-container"><div class="dots"></div></div></div>
@@ -43,13 +37,8 @@
                             <label>کد تایید به شماره<strong
                                     class="message-number">{{codeSentTo}}</strong>ارسال
                                 شد</label>
-                            <input class="field-code" type="number"
-                                autocomplete="off"
-                                formControlName="codeFormCtrl"
-                                placeholder="XXXXXX"
-                                appWebopt>
-                            <small class="invalid-feedback"
-                                *ngIf="signinFormGroup.controls['codeFormCtrl'].invalid
+                            <input class="field-code" type="number" autocomplete="off" formControlName="codeFormCtrl" placeholder="XXXXXX" appWebopt>
+                            <small class="invalid-feedback" *ngIf="signinFormGroup.controls['codeFormCtrl'].invalid
                                 &&
                                 signinFormGroup.controls['codeFormCtrl'].touched">
                                 کد صحیح نیست, دوباره تلاش کنید.
@@ -66,18 +55,15 @@
                             <ng-template #resendCodeScope>
                                 <p class="resend">
                                     دریافت مجدد کد از طریق
-                                    <button type="button" class="btn change-side-btn"
-                                        (click)="resendCode()">
+                                    <button type="button" class="btn change-side-btn" (click)="resendCode()">
                                         پیامک
                                         <i class="icon-forpet-chevron-left"></i>
                                     </button>
                                 </p>
                             </ng-template>
                         </div>
-                        <button type="submit"
-                            [disabled]="signinFormGroup.controls['codeFormCtrl'].invalid
-                            || buttonSpinnerSwitch"
-                            class="btn btn-block btn-forpet-tertiary">
+                        <button type="submit" [disabled]="signinFormGroup.controls['codeFormCtrl'].invalid
+                            || buttonSpinnerSwitch" class="btn btn-block btn-forpet-tertiary">
                             <div *ngIf="buttonSpinnerSwitch;else spinnerOff"
                                 class="dots-container"><div
                                     class="dots-container"><div class="dots"></div></div></div>
@@ -90,15 +76,10 @@
                         <div class="form-field">
                             <label>کلمه عبور را وارد نمایید</label>
                             <div class="input-group-custom">
-                                <input class="form-control has-toggler"
-                                    appPasswordToggle
-                                    #exportPasswordToggle="exportPasswordToggle"
-                                    [type]="(exportPasswordToggle.isShow) ?
-                                    'text' : 'password'" autocomplete="off"
-                                    formControlName="passFormCtrl">
+                                <input class="form-control has-toggler" appPasswordToggle #exportPasswordToggle="exportPasswordToggle" [type]="(exportPasswordToggle.isShow) ?
+                                    'text' : 'password'" autocomplete="off" formControlName="passFormCtrl">
                                 <button type="button" class="btn
-                                    password-toggler"
-                                    [appPasswordToggleCtrl]="exportPasswordToggle">
+                                    password-toggler" [appPasswordToggleCtrl]="exportPasswordToggle">
                                     <i [class]="(exportPasswordToggle.isShow) ?
                                         'icon-forpet-password-show' :
                                         'icon-forpet-password-hide'"></i>
@@ -106,16 +87,13 @@
                             </div>
                         </div>
                         <div class="accessibility">
-                            <span class="btn change-side-btn"
-                                (click)="oneTimePassword()">
+                            <span class="btn change-side-btn" (click)="oneTimePassword()">
                                 ورود با رمز یکبار مصرف
                                 <i class="icon-forpet-chevron-left"></i>
                             </span>
                         </div>
-                        <button type="submit"
-                            [disabled]="signinFormGroup.controls['passFormCtrl'].invalid
-                            || buttonSpinnerSwitch"
-                            class="btn btn-block btn-forpet-tertiary">
+                        <button type="submit" [disabled]="signinFormGroup.controls['passFormCtrl'].invalid
+                            || buttonSpinnerSwitch" class="btn btn-block btn-forpet-tertiary">
                             <div *ngIf="buttonSpinnerSwitch;else spinnerOff"
                                 class="dots-container"><div
                                     class="dots-container"><div class="dots"></div></div></div>
@@ -160,17 +138,16 @@
 <section class="hero" style="background-image:
     url('./assets/images/register-shape.svg');">
 
-    <span class="logo-container">
+    <a routerLink="/home" class="logo-container">
         <img src="./assets/images/logo.png" height="80" width="80" alt="website
             logo">
         <h2>پت شاپ</h2>
-    </span>
+    </a>
 
     <div class="slogan">
         <h1>
             DOG AND CAT
-            <br>
-            FOOD STORE
+            <br> FOOD STORE
         </h1>
         <h3>in the province</h3>
     </div>

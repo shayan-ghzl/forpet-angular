@@ -9,14 +9,18 @@ import { ProductResolver } from './shared/resolvers/product.resolver';
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 import { LoginGuard } from './shared/guards/login.guard';
 import { AuthenticationService } from './shared/services/authentication.service';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProductArchiveComponent } from './product-archive/product-archive.component';
+import { environment } from '../environments/environment';
 
 const loginGuardCanActivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
+  if (environment.useFakeApi) {
+    return of(true);
+  }
   const router = inject(Router);
   const authenticationService = inject(AuthenticationService);
   return authenticationService.getCurrentUser().pipe(
@@ -34,6 +38,9 @@ const AuthGuardCanActivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
+  if (environment.useFakeApi) {
+    return of(true);
+  }
   const router = inject(Router);
   const authenticationService = inject(AuthenticationService);
   return authenticationService.getCurrentUser().pipe(
@@ -51,13 +58,13 @@ const AuthGuardCanActivate: CanActivateFn = (
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthenticationGuard],
   },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuard]
-    // canActivate: [loginGuardCanActivate]
   },
   {
     path: '',
@@ -68,14 +75,13 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     canActivate: [AuthenticationGuard],
-    // canActivate: [AuthGuardCanActivate],
     children: [
       {
         path: 'cart',
         component: CartComponent,
       },
       {
-        path: 'shop',
+        path: 'product-archive',
         component: ProductArchiveComponent,
       },
       {

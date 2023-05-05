@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -18,15 +19,17 @@ export class JwtInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = localStorage.getItem('ut');
-    if (this.authenticationService.token || token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.authenticationService.token || token}`
-        }
-      });
-    } else {
-      this.router.navigateByUrl('/login');
+    if (!environment.useFakeApi) {
+      const token = localStorage.getItem('ut');
+      if (this.authenticationService.token || token) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${this.authenticationService.token || token}`
+          }
+        });
+      } else {
+        this.router.navigateByUrl('/login');
+      }
     }
     return next.handle(request);
   }

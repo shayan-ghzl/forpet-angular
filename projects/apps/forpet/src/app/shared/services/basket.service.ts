@@ -95,17 +95,7 @@ export class BasketService {
     if (this.basketId !== environment.emptyGuid) {
       return this.http.get<IBasket>(environment.apiUrl + 'Basket/GetBasketById', { params: new HttpParams().append('id', this.basketId) }).pipe(
         take(1),
-        tap(value => {
-          this.basketId = value.id || environment.emptyGuid;
-          this.setIBasket(value);
-          this.addToBasket(value.basketItems);
-          this.setBasketCalculation({
-            'totalCount': value.totalCount,
-            'totalDiscount': value.totalDiscount,
-            'totalPureSum': value.totalPureSum,
-            'totalSum': value.totalSum
-          });
-        }),
+        tap((value) => this.basketToStore(value)),
       );
     }
     return of({
@@ -117,17 +107,7 @@ export class BasketService {
       totalSum: '',
     }).pipe(
       take(1),
-      tap(value => {
-        this.basketId = value.id || environment.emptyGuid;
-        this.setIBasket(value);
-        this.addToBasket(value.basketItems);
-        this.setBasketCalculation({
-          'totalCount': value.totalCount,
-          'totalDiscount': value.totalDiscount,
-          'totalPureSum': value.totalPureSum,
-          'totalSum': value.totalSum
-        });
-      }),
+      tap((value) => this.basketToStore(value)),
     );
   }
 
@@ -137,35 +117,27 @@ export class BasketService {
       basketItem: product
     }).pipe(
       take(1),
-      tap(value => {
-        this.basketId = value.id || environment.emptyGuid;
-        this.setIBasket(value);
-        this.addToBasket(value.basketItems);
-        this.setBasketCalculation({
-          'totalCount': value.totalCount,
-          'totalDiscount': value.totalDiscount,
-          'totalPureSum': value.totalPureSum,
-          'totalSum': value.totalSum
-        });
-      }),
+      tap((value) => this.basketToStore(value)),
     );
   }
 
   deleteBasket() {
     return this.http.delete<any>(environment.apiUrl + 'Basket/DeleteBasket', { params: new HttpParams().append('id', this.basketId) }).pipe(
       take(1),
-      tap(value => {
-        this.basketId = environment.emptyGuid;
-        this.setIBasket(value);
-        this.addToBasket([]);
-        this.setBasketCalculation({
-          'totalCount': '',
-          'totalDiscount': '',
-          'totalPureSum': '',
-          'totalSum': ''
-        });
-      }),
+      tap((value) => this.basketToStore(value)),
     );
+  }
+
+  basketToStore(value: IBasket) {
+    this.basketId = value.id || environment.emptyGuid;
+    this.setIBasket(value);
+    this.addToBasket(value.basketItems);
+    this.setBasketCalculation({
+      'totalCount': value.totalCount,
+      'totalDiscount': value.totalDiscount,
+      'totalPureSum': value.totalPureSum,
+      'totalSum': value.totalSum
+    });
   }
 
 }

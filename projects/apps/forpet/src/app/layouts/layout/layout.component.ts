@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { IBasket } from '../../shared/models/api-models';
 import { ApiService } from '../../shared/services/api.service';
 import { BasketService } from '../../shared/services/basket.service';
+import { FakeApiService } from '../../shared/services/fake-api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-layout',
@@ -30,9 +32,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
   
   constructor(
     private apiService: ApiService,
+    private fakeApiService: FakeApiService,
     private basketService: BasketService,
   ) {
-    basketService.getBasketById().subscribe();
+    if (environment.useFakeApi) {
+      fakeApiService.getFakeBasketById().subscribe();
+    } else {
+      basketService.getBasketById().subscribe();
+    }
   }
 
   ngOnInit(): void {

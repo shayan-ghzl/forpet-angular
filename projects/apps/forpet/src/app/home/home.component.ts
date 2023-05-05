@@ -5,6 +5,8 @@ import { Good, IBasket, IBrandDto, IGoodGroupDto } from '../shared/models/api-mo
 import { ApiService } from '../shared/services/api.service';
 import { BasketService } from '../shared/services/basket.service';
 import { OfflineStorageService } from '../shared/services/offline-storage.service';
+import { FakeApiService } from '../shared/services/fake-api.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -95,8 +97,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private basketService: BasketService,
     private offlineStorageService: OfflineStorageService,
+    private fakeApiService: FakeApiService,
   ) {
-    basketService.getBasketById().subscribe();
+    if (environment.useFakeApi) {
+      fakeApiService.getFakeBasketById().subscribe();
+    } else {
+      basketService.getBasketById().subscribe();
+    }
   }
 
   ngOnInit(): void {
@@ -108,14 +115,41 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       )
     );
-    this.getGoods();
+
+
+    if (environment.useFakeApi) {
+      this.getFakeGoods();
+    } else {
+      this.getGoods();
+    }
     this.getGoodGroups();
     this.getBrands();
+
+  }
+
+  getFakeGoods() {
+    this.subscription.add(
+      this.fakeApiService.getFakeGoods().pipe(
+        finalize(() => {
+          this.hasTrendProductsArrived = true;
+        }),
+      ).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.trendProducts = response.data.data;
+        },
+        error: (error) => {
+          console.log(error, 'error');
+        }
+      })
+    );
   }
 
   getGoods() {
+    console.log('start getGoods');
     let temp = localStorage.getItem('time') || '0';
     this.offlineStorageService.getItems('products').then((value: Good[]) => {
+      console.log('start offlineStorageService getGoods');
       if (!isNaN(+temp) && Math.abs(+temp - new Date().getTime()) < 3600000) {
         this.trendProducts = value;
         if (value.length != 0) {
@@ -123,6 +157,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           return;
         }
       }
+      console.log('start request getGoods');
       this.subscription.add(
         this.apiService.getGoods({
           page: 1,
@@ -172,7 +207,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.apiService.getBrands({
         page: 1,
-        per_page: -1,
+        per_page: 4,
       }).pipe(
         finalize(() => {
           this.hasBrandsArrived = true;
@@ -183,6 +218,20 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.offlineStorageService.addItems('brands', <IBrandDto[]>response.data.data).then((value) => {
             console.log(value, 'offlineStorageService addItems');
           });
+          // create a file and saving response----------
+          let object = JSON.stringify(this.brands);
+          const blob = new Blob([object], { type: 'text/plain' });
+          const url = window.URL.createObjectURL(blob);
+          // this one:
+          // window.open(url);
+          // or this one:
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "getBrands.txt";
+          // enable or disable switch here:
+          // link.click();
+          URL.revokeObjectURL(link.href);
+          // -------------------------------------------
         },
         error: (error) => {
           console.log(error);
