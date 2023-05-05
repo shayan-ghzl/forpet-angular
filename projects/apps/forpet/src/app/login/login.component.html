@@ -1,0 +1,183 @@
+<section class="authentication">
+    <div class="authentication-container">
+        <div class="branding-row-span">
+            <span>
+                <img src="./assets/images/logo.png" width="80" alt="logo">
+            </span>
+            <button *ngIf="_formActive!=1" (click)="formActive=1" type="button"
+                class="btn back-btn">
+                <i class="icon-forpet-arrow-right"></i>
+            </button>
+        </div>
+        <form [formGroup]="signinFormGroup" (ngSubmit)="buttonSpinnerSwitch ||
+            submitHandler()" autocomplete="off">
+            <div class="form-fields-container">
+                <ng-container [ngSwitch]="_formActive">
+                    <ng-container *ngSwitchCase="1">
+                        <div class="form-field">
+                            <label>لطفا شماره موبایل خود را وارد کنید:</label>
+                            <input class="form-control field-mobile" type="text"
+                                formControlName="mobileFormCtrl"
+                                autocomplete="off">
+                            <small class="invalid-feedback"
+                                *ngIf="signinFormGroup.controls['mobileFormCtrl'].invalid
+                                &&
+                                signinFormGroup.controls['mobileFormCtrl'].touched">
+                                شماره موبایل نادرست است.
+                            </small>
+                        </div>
+                        <button type="submit"
+                            [disabled]="signinFormGroup.controls['mobileFormCtrl'].invalid
+                            || buttonSpinnerSwitch"
+                            class="btn btn-block btn-forpet-tertiary">
+                            <div *ngIf="buttonSpinnerSwitch;else spinnerOff"
+                                class="dots-container"><div
+                                    class="dots-container"><div class="dots"></div></div></div>
+                            <ng-template #spinnerOff>
+                                ورود
+                            </ng-template>
+                        </button>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="2">
+                        <div class="form-field">
+                            <label>کد تایید به شماره<strong
+                                    class="message-number">{{codeSentTo}}</strong>ارسال
+                                شد</label>
+                            <input class="field-code" type="number"
+                                autocomplete="off"
+                                formControlName="codeFormCtrl"
+                                placeholder="XXXXXX"
+                                appWebopt>
+                            <small class="invalid-feedback"
+                                *ngIf="signinFormGroup.controls['codeFormCtrl'].invalid
+                                &&
+                                signinFormGroup.controls['codeFormCtrl'].touched">
+                                کد صحیح نیست, دوباره تلاش کنید.
+                            </small>
+                        </div>
+                        <div class="accessibility">
+                            <button type="button" class="btn change-side-btn" (click)="formActive=3">
+                                ورود با رمز عبور
+                                <i class="icon-forpet-chevron-left"></i>
+                            </button>
+                            <p *ngIf="(stopTimer | async) != 'stop';else resendCodeScope" class="remaining-time">
+                                <strong id="remaining-counter">02:00</strong>مانده تا دریافت مجدد کد
+                            </p>
+                            <ng-template #resendCodeScope>
+                                <p class="resend">
+                                    دریافت مجدد کد از طریق
+                                    <button type="button" class="btn change-side-btn"
+                                        (click)="resendCode()">
+                                        پیامک
+                                        <i class="icon-forpet-chevron-left"></i>
+                                    </button>
+                                </p>
+                            </ng-template>
+                        </div>
+                        <button type="submit"
+                            [disabled]="signinFormGroup.controls['codeFormCtrl'].invalid
+                            || buttonSpinnerSwitch"
+                            class="btn btn-block btn-forpet-tertiary">
+                            <div *ngIf="buttonSpinnerSwitch;else spinnerOff"
+                                class="dots-container"><div
+                                    class="dots-container"><div class="dots"></div></div></div>
+                            <ng-template #spinnerOff>
+                                ادامه
+                            </ng-template>
+                        </button>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="3">
+                        <div class="form-field">
+                            <label>کلمه عبور را وارد نمایید</label>
+                            <div class="input-group-custom">
+                                <input class="form-control has-toggler"
+                                    appPasswordToggle
+                                    #exportPasswordToggle="exportPasswordToggle"
+                                    [type]="(exportPasswordToggle.isShow) ?
+                                    'text' : 'password'" autocomplete="off"
+                                    formControlName="passFormCtrl">
+                                <button type="button" class="btn
+                                    password-toggler"
+                                    [appPasswordToggleCtrl]="exportPasswordToggle">
+                                    <i [class]="(exportPasswordToggle.isShow) ?
+                                        'icon-forpet-password-show' :
+                                        'icon-forpet-password-hide'"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="accessibility">
+                            <span class="btn change-side-btn"
+                                (click)="oneTimePassword()">
+                                ورود با رمز یکبار مصرف
+                                <i class="icon-forpet-chevron-left"></i>
+                            </span>
+                        </div>
+                        <button type="submit"
+                            [disabled]="signinFormGroup.controls['passFormCtrl'].invalid
+                            || buttonSpinnerSwitch"
+                            class="btn btn-block btn-forpet-tertiary">
+                            <div *ngIf="buttonSpinnerSwitch;else spinnerOff"
+                                class="dots-container"><div
+                                    class="dots-container"><div class="dots"></div></div></div>
+                            <ng-template #spinnerOff>
+                                ادامه
+                            </ng-template>
+                        </button>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <div class="social-menu-container">
+            <ul class="social-menu-wrapper">
+                <li>
+                    <a routerLink="/home" class="instagram">
+                        <i class="icon-forpet-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/home" class="telegram">
+                        <i class="icon-forpet-telegram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/home" class="whatsapp">
+                        <i class="icon-forpet-whatsapp"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="designer-company">
+            <h5>ForPet</h5>
+            <div>
+                <span>2020 Buy pet food and supplies</span>
+                <a href="#">طراحی و توسعه توسط لیان وب</a>
+            </div>
+        </div>
+    </footer>
+</section>
+<section class="hero" style="background-image:
+    url('./assets/images/register-shape.svg');">
+
+    <span class="logo-container">
+        <img src="./assets/images/logo.png" height="80" width="80" alt="website
+            logo">
+        <h2>پت شاپ</h2>
+    </span>
+
+    <div class="slogan">
+        <h1>
+            DOG AND CAT
+            <br>
+            FOOD STORE
+        </h1>
+        <h3>in the province</h3>
+    </div>
+
+
+    <div class="dog-head">
+        <img src="./assets/images/dog.png" alt="dog head">
+    </div>
+
+</section>

@@ -1,0 +1,19 @@
+.password-toggler {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    i {
+        font-size: 1.35rem;
+    }
+}
+input.has-toggler {
+    padding-left: 48px;
+    background-image: none;
+}
+.dots-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

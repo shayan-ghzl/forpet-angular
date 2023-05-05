@@ -1,0 +1,172 @@
+@use 'sass:math';
+$base-size: 16px; // Default
+
+@function strip-units($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function convertPixelToEm($pixels, $context: $base-size) {
+    @return #{math.div(strip-units($pixels), strip-units($context))}em;
+}
+
+// -------------------------
+:host {
+    display: block;
+    user-select: none;
+    font-size: $base-size;
+}
+
+.background-sign {
+    box-shadow: 0 0 convertPixelToEm(16px) rgba(0, 0, 0, 0.15);
+    background-color: var(--forpet-color-primary);
+    width: 100%;
+    height: convertPixelToEm(35px);
+    border-radius: convertPixelToEm(13px) convertPixelToEm(13px) 0 0;
+}
+
+.card-body {
+    border-radius: convertPixelToEm(13px);
+    background-color: var(--forpet-color-light);
+    padding: convertPixelToEm(15px);
+    transform: translateY(convertPixelToEm(-10px));
+    box-shadow: 0 0 convertPixelToEm(16px) rgba(0, 0, 0, 0.2);
+    border-top: 1px solid #b7b7b7;
+}
+
+.price-container {
+    display: flex;
+    align-items: flex-end;
+    height: convertPixelToEm(29px);
+    margin-bottom: convertPixelToEm(16px);
+    color: var(--forpet-color-tertiary);
+
+    h4 {
+        color: var(--forpet-color-primary);
+        margin: 0;
+        font-size: convertPixelToEm(24px);
+        text-shadow: -1px 0 var(--forpet-color-tertiary), 0 1px var(--forpet-color-tertiary), 1px 0 var(--forpet-color-tertiary), 0 -1px var(--forpet-color-tertiary);
+    }
+
+    span {
+        margin-right: auto;
+
+        del {
+            display: block;
+            color: var(--forpet-color-danger);
+            text-decoration-color: var(--forpet-color-danger-tint);
+            font-size: convertPixelToEm(12px);
+            text-align: left;
+        }
+
+        ins {
+            display: block;
+            text-decoration: none;
+            font-weight: var(--forpet-heading-font-weight);
+        }
+    }
+}
+
+.product-name {
+    margin-bottom: convertPixelToEm(12px);
+    display: block;
+
+    h3 {
+        height: convertPixelToEm(47px);
+        font-size: convertPixelToEm(17.6px);
+        --forpet-heading-font-family: var(--bs-font-sans-serif);
+        --forpet-heading-line-height: 1.4;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
+
+.menu-container {
+    margin-bottom: convertPixelToEm(16px);
+
+
+    ul {
+        font-size: convertPixelToEm(11px);
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: convertPixelToEm(6px);
+    }
+}
+
+.thumbnail {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
+    transform: translateY(convertPixelToEm(-28px));
+    border-radius: convertPixelToEm(7px);
+}
+
+.add-to-card {
+    button {
+        --bs-btn-padding-y: 0;
+        --bs-btn-padding-x: 0;
+        --bs-btn-border-width: 0;
+        --bs-btn-font-weight: var(--forpet-heading-font-weight);
+        --bs-btn-font-size: 14px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    span {
+        &:first-child {
+            display: block;
+            margin-right: auto;
+        }
+
+        &:last-child {
+            background-color: var(--forpet-color-success);
+            color: var(--forpet-color-light);
+            display: block;
+            margin-right: auto;
+            padding: 7px 14px;
+            font-size: 18px;
+        }
+    }
+}
+
+
+@media (max-width:1200px) {
+    :host {
+        font-size: 14px;
+    }
+    .add-to-card {
+        button {
+            --bs-btn-font-size: 12px;
+        }
+    
+        span {
+            &:last-child {
+                padding: 4.5px 10px;
+                  font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width:992px) {
+
+    
+}
+
+@media (max-width:768px) {}
+
+@media (max-width:576px) {}
+
+@media (max-width:357px) {}

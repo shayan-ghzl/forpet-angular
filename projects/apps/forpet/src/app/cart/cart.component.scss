@@ -1,0 +1,355 @@
+:host {
+
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 3rem 10%;
+
+    ::ng-deep {
+
+        // form-generator style start
+        .form-label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .input-group {
+
+            .form-control {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            button {
+                white-space: nowrap;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                --bs-btn-font-size: 13px;
+
+                &:active {
+                    transform: scale(0.98);
+                }
+            }
+        }
+
+        // form-generator style end
+        app-product-counter {
+            div {
+                font-size: 14px;
+            }
+
+            span {
+                background-color: var(--forpet-color-success);
+                color: var(--bs-white);
+                border-color: var(--bs-gray-600);
+            }
+        }
+    }
+
+    .empty-message {
+        text-align: center;
+        width: 100%;
+        --forpet-heading-font-family: "Samim", Samim;
+
+        a {
+            margin-top: 18px;
+            --bs-btn-padding-x: 28px;
+            --bs-btn-padding-y: 10px;
+            --bs-btn-font-size: 14px;
+            --bs-btn-font-weight: 700;
+            --bs-btn-border-color: var(--bs-gray-500);
+            --bs-btn-hover-border-color: var(--bs-gray-500);
+            --bs-btn-color: var(--bs-gray-800);
+        }
+    }
+
+    .spinner {
+        margin: 0 auto;
+    }
+}
+
+.cart-preview-container {
+    flex: 0 0 auto;
+    width: calc(66.666666% - 12px);
+}
+
+.cart-invoice-container {
+    flex: 0 0 auto;
+    width: calc(33.333333% - 12px);
+
+    >div {
+        border: 1px solid var(--bs-gray-500);
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .notice {
+        margin: 8px;
+        font-size: 13px;
+    }
+
+    .coupon {
+        margin-bottom: 24px;
+    }
+
+    .btn-hero {
+        --bs-btn-padding-y: 16px;
+        --bs-btn-padding-x: 16px;
+        --bs-btn-border-radius: 10px;
+        --bs-btn-font-size: 14px;
+        --bs-btn-hover-color: var(--forpet-color-primary);
+        background-image: linear-gradient(to bottom, #6834a9, transparent);
+
+
+    }
+
+    .form-label {
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .form-group {
+        display: flex;
+
+        .form-control {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        button {
+            white-space: nowrap;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            --bs-btn-font-size: 13px;
+
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+    }
+
+    h5 {
+        --forpet-heading-font-family: "Samim", Samim;
+        margin-bottom: 20px;
+    }
+}
+
+.cart-preview-wrapper {
+    >li {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 18px;
+        border-radius: 10px;
+        background-color: var(--bs-white);
+        border: 1px solid var(--bs-gray-500);
+
+        &:not(:last-child) {
+            margin-bottom: 24px;
+        }
+    }
+}
+
+.product-thumbnail {
+    flex: 0 0 auto;
+    width: 220px;
+    display: block;
+
+    a {
+        width: 220px;
+        padding-top: 220px;
+        height: 0;
+        display: block;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: var(--bs-white);
+        border: 1px solid var(--bs-gray-500);
+        border-radius: 5px;
+    }
+}
+
+.item-info {
+    flex: 0 0 auto;
+    width: calc(100% - 220px);
+    padding-right: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    h5 {
+        margin: 0;
+        --forpet-heading-font-family: "Samim", Samim;
+        --forpet-heading-line-height: 1.4;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    button {
+        margin-right: 18px;
+        --bs-btn-font-size: 9px;
+        --bs-btn-border-radius: 50%;
+        --bs-btn-padding-y: 0;
+        --bs-btn-padding-x: 0;
+        bottom: 0;
+        padding-top: 1px;
+        padding-right: 1px;
+        --bs-btn-line-height: 1;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+
+.meta-menu-container {
+    margin-top: 24px;
+
+    ul {
+        font-size: 13px;
+
+        li {
+            &:not(:last-child) {
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
+.price-container {
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 12px;
+    text-align: left;
+
+    del {
+        display: block;
+        color: var(--forpet-color-danger);
+        font-size: 14px;
+
+    }
+
+    ins {
+        display: block;
+        text-decoration: none;
+        color: var(--forpet-color-dark-tint);
+        font-weight: 700;
+    }
+}
+
+app-product-counter {
+    margin-right: auto;
+}
+
+.invoice-menu-container {
+    margin-bottom: 24px;
+
+    ul {
+        font-size: 14px;
+    }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-gray-500);
+
+        ins {
+            text-decoration: none;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 12px;
+        }
+    }
+}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {
+    :host {
+        flex-direction: column-reverse;
+    }
+
+    .cart-invoice-container,
+    .cart-preview-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 868px) {}
+
+@media (max-width: 768px) {
+    :host {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .cart-preview-wrapper>li {
+        display: block;
+    }
+
+    .product-thumbnail {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .item-info {
+        width: 100%;
+        padding: 0;
+    }
+
+    .meta-menu-container {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .product-name button {
+        position: absolute;
+        top: 9px;
+        left: 9px;
+        margin: 0;
+        z-index: 1;
+        width: 25px;
+        height: 25px;
+        padding-top: 0;
+    }
+
+    .product-thumbnail a {
+        width: 100%;
+        padding-top: 100%;
+    }
+
+    .product-name h5 {
+        font-size: 16px;
+    }
+
+    .meta-menu-container ul {
+        font-size: 12px;
+
+        li:not(:last-child) {
+            margin-bottom: 6px;
+        }
+    }
+
+    app-product-counter {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 357px) {}

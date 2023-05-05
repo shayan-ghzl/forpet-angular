@@ -1,0 +1,27 @@
+:host {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background: var(--bs-white);
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.2s;
+    transform: translateX(100%);
+    visibility: hidden;
+
+    &.active {
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+.menu-container{
+    user-select: none;
+    padding: 16px;
+}
+
+.menu-wrapper{
+
+}

@@ -1,0 +1,32 @@
+:host{
+    padding: 3rem 10%;
+    display: block;
+    .entry-title{
+        margin-bottom: 36px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        h4, h6{
+            --forpet-heading-font-family:var(--bs-font-sans-serif);
+        }
+        button{
+            --bs-btn-padding-x:2rem;
+            --bs-btn-hover-border-color:var(--bs-gray-500);
+            --bs-btn-border-color:var(--bs-gray-500);
+            --bs-btn-color:var(--bs-gray-900);
+            --bs-btn-font-weight:700;
+            &:active{
+                transform: scale(0.98);
+            }
+        }
+    }
+}
+.product-list-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    app-product-card{
+        flex: 0 0 auto;
+        width: calc(25% - 18px);
+    }
+}

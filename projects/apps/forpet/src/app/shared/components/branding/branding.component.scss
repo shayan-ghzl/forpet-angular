@@ -1,0 +1,61 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 10%;
+}
+
+.logo-container {
+    a {
+        display: flex;
+        align-items: center;
+    }
+
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.call-info {
+    h6 {
+        --forpet-heading-font-family: sans-serif;
+        --forpet-heading-line-height: 1;
+
+        &:last-child {
+            direction: ltr;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+    }
+}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {}
+
+@media (max-width: 768px) {
+    :host {
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+
+    app-mini-cart-popup {
+        display: none;
+    }
+
+}
+
+@media (max-width: 576px) {
+    :host {
+        justify-content: center;
+    }
+
+    .dropdown-container {
+        display: none;
+    }
+}
+
+@media (max-width: 357px) {}

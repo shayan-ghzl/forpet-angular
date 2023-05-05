@@ -1,0 +1,140 @@
+$font-size-base:                          1rem !default; // Assumes the browser default, typically `16px`
+$line-height-base:                        1.5 !default;
+
+$white:                                   #fff !default;
+$black:                                   #000 !default;
+
+$body-bg:                                 $white !default;
+$input-bg:                                $body-bg !default;
+
+$form-check-input-width:                  1em;
+$form-check-min-height:                   $font-size-base * $line-height-base;
+$form-check-padding-start:                $form-check-input-width + .5em;
+$form-check-margin-bottom:                .125rem;
+$form-check-label-color:                  null;
+$form-check-label-cursor:                 null;
+$form-check-transition:                   null;
+
+$form-check-input-active-filter:          brightness(90%);
+
+$form-check-input-bg:                     $input-bg;
+$form-check-input-border:                 1px solid rgba($black, .25);
+$form-check-input-border-radius:          .25em;
+$form-check-radio-border-radius:          50%;
+$form-check-input-focus-border:           $input-focus-border-color;
+$form-check-input-focus-box-shadow:       $input-btn-focus-box-shadow;
+
+$form-check-input-checked-color:          $component-active-color;
+$form-check-input-checked-bg-color:       $component-active-bg;
+$form-check-input-checked-border-color:   $form-check-input-checked-bg-color;
+$form-check-input-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/></svg>");
+$form-check-radio-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
+
+$form-check-input-indeterminate-color:          $component-active-color;
+$form-check-input-indeterminate-bg-color:       $component-active-bg;
+$form-check-input-indeterminate-border-color:   $form-check-input-indeterminate-bg-color;
+$form-check-input-indeterminate-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-indeterminate-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>");
+
+$form-check-input-disabled-opacity:        .5;
+$form-check-label-disabled-opacity:        $form-check-input-disabled-opacity;
+$form-check-btn-check-disabled-opacity:    $btn-disabled-opacity;
+
+$form-check-inline-margin-end:    1rem;
+
+.form-check {
+    display: block;
+    min-height: $form-check-min-height;
+    padding-left: $form-check-padding-start;
+    margin-bottom: $form-check-margin-bottom;
+  
+    .form-check-input {
+      float: left;
+      margin-left: $form-check-padding-start * -1;
+    }
+  }
+  
+  .form-check-input {
+    width: $form-check-input-width;
+    height: $form-check-input-width;
+    margin-top: ($line-height-base - $form-check-input-width) * .5; // line-height minus check height
+    vertical-align: top;
+    background-color: $form-check-input-bg;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: $form-check-input-border;
+    appearance: none;
+    color-adjust: exact; // Keep themed appearance for print
+    @include transition($form-check-transition);
+  
+    &[type="checkbox"] {
+      @include border-radius($form-check-input-border-radius);
+    }
+  
+    &[type="radio"] {
+      // stylelint-disable-next-line property-disallowed-list
+      border-radius: $form-check-radio-border-radius;
+    }
+  
+    &:active {
+      filter: $form-check-input-active-filter;
+    }
+  
+    &:focus {
+      border-color: $form-check-input-focus-border;
+      outline: 0;
+      box-shadow: $form-check-input-focus-box-shadow;
+    }
+  
+    &:checked {
+      background-color: $form-check-input-checked-bg-color;
+      border-color: $form-check-input-checked-border-color;
+  
+      &[type="checkbox"] {
+        @if $enable-gradients {
+          background-image: escape-svg($form-check-input-checked-bg-image), var(--#{$variable-prefix}gradient);
+        } @else {
+          background-image: escape-svg($form-check-input-checked-bg-image);
+        }
+      }
+  
+      &[type="radio"] {
+        @if $enable-gradients {
+          background-image: escape-svg($form-check-radio-checked-bg-image), var(--#{$variable-prefix}gradient);
+        } @else {
+          background-image: escape-svg($form-check-radio-checked-bg-image);
+        }
+      }
+    }
+  
+    &[type="checkbox"]:indeterminate {
+      background-color: $form-check-input-indeterminate-bg-color;
+      border-color: $form-check-input-indeterminate-border-color;
+  
+      @if $enable-gradients {
+        background-image: escape-svg($form-check-input-indeterminate-bg-image), var(--#{$variable-prefix}gradient);
+      } @else {
+        background-image: escape-svg($form-check-input-indeterminate-bg-image);
+      }
+    }
+  
+    &:disabled {
+      pointer-events: none;
+      filter: none;
+      opacity: $form-check-input-disabled-opacity;
+    }
+  
+    // Use disabled attribute in addition of :disabled pseudo-class
+    // See: https://github.com/twbs/bootstrap/issues/28247
+    &[disabled],
+    &:disabled {
+      ~ .form-check-label {
+        opacity: $form-check-label-disabled-opacity;
+      }
+    }
+  }
+  
+  .form-check-label {
+    color: $form-check-label-color;
+    cursor: $form-check-label-cursor;
+  }

@@ -1,0 +1,206 @@
+:host {
+    ::ng-deep {
+        @import "swiper/scss";
+
+        // ---------------------------------
+        .ngxImageZoomContainer {
+            width: 100% !important;
+            height: 0 !important;
+            padding-top: 100%;
+
+        }
+
+        lib-ngx-image-zoom {
+            img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                object-fit: cover;
+                top: 0;
+                left: 0;
+                // right: 0;
+                // bottom: 0;
+            }
+        }
+
+        swiper {
+            border-radius: 10px;
+            box-shadow: 0 0 3px #00000080;
+        }
+    }
+}
+
+section.product-interface {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 24px;
+    padding: 3rem 10%;
+
+    .product-face {
+        flex: 0 0 auto;
+        width: 33.333333%;
+    }
+
+    .product-text {
+        flex: 0 0 auto;
+        width: calc(66.666666% - 24px);
+    }
+}
+
+.gallery-container {
+    margin-top: 16px;
+
+    .gallery-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        li {
+            flex: 0 0 auto;
+            width: calc(25% - 7.5px);
+            cursor: pointer;
+            border: 1px solid rgba(var(--forpet-color-medium-rgb), 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+
+            &.active {
+                border-color: var(--forpet-color-medium);
+            }
+        }
+    }
+
+    span {
+        display: block;
+        padding-top: 100%;
+        position: relative;
+
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.add-to-card {
+    width: 220px;
+
+    button {
+        --bs-btn-padding-y: 0;
+        --bs-btn-padding-x: 0;
+        --bs-btn-border-width: 0;
+        --bs-btn-font-weight: var(--forpet-heading-font-weight);
+        --bs-btn-font-size: 14px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    span {
+        &:first-child {
+            display: block;
+            margin-right: auto;
+        }
+
+        &:last-child {
+            background-color: var(--forpet-color-success);
+            color: var(--forpet-color-light);
+            display: block;
+            margin-right: auto;
+            padding: 7px 14px;
+            font-size: 18px;
+        }
+    }
+}
+
+.product-text {
+    h5 {
+        border-bottom: 1px solid var(--bs-gray-400);
+        --forpet-heading-font-family: var(--bs-font-sans-serif);
+        padding-bottom: 14px;
+    }
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        min-height: 245px;
+    }
+
+    .calculation {
+        align-self: flex-end;
+        margin-top: auto;
+        text-align: left;
+
+        .item-price {
+            ins {
+                font-weight: 700;
+                text-decoration: none;
+                font-size: 20px;
+                margin-bottom: 16px;
+                display: block;
+            }
+        }
+    }
+
+    .metadata-menu-wrapper {
+        font-size: 13px;
+
+        li {
+            &:not(:first-child) {
+                margin-top: 6px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {
+    :host swiper {
+        border-radius: 8px;
+    }
+
+    .gallery-container .gallery-wrapper li {
+        width: calc(33.333333% - 6.666666px);
+        border-radius: 7px;
+    }
+
+    section.product-interface .product-face {
+        width: calc(40% - 12px);
+    }
+
+    section.product-interface .product-text {
+        width: calc(60% - 12px)
+    }
+}
+
+@media (max-width: 768px) {
+    section.product-interface {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
+
+@media (max-width: 576px) {
+    section.product-interface {
+        column-gap: 0;
+        row-gap: 24px;
+        padding-top: 2rem;
+    }
+
+    section.product-interface .product-face {
+        width: 100%;
+    }
+
+    section.product-interface .product-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 357px) {}

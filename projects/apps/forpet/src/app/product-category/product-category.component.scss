@@ -1,0 +1,183 @@
+@use 'sass:math';
+$base-size: 16px; // Default
+
+@function strip-units($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function convertPixelToEm($pixels, $context: $base-size) {
+    @return #{math.div(strip-units($pixels), strip-units($context))}em;
+}
+
+// ------------------------------------------------
+:host {
+    padding: 3rem 10% 4rem 10%;
+    display: block;
+    font-size: 16px;
+    --forpet-color-category-title: var(--bs-gray-800);
+    --forpet-hover-color-category-title: var(--bs-gray-700);
+
+    .entry-title {
+        --forpet-heading-font-family: var(--bs-font-sans-serif);
+        margin-bottom: 48px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--bs-gray-500);
+    }
+}
+
+.category-list-container {}
+
+.category-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: convertPixelToEm(36px);
+
+    li {
+        position: relative;
+        flex: 0 0 auto;
+        width: calc(50% - convertPixelToEm(18px));
+        overflow: hidden;
+        display: block;
+        background-color: var(--forpet-color-primary);
+
+        &:hover {
+            .category-title {
+                &::before {
+                    background-color: var(--forpet-hover-color-category-title);
+                }
+            }
+        }
+
+        a {
+            --bs-link-color: var(--bs-gray-800);
+            --bs-link-hover-color: var(--bs-gray-700);
+        }
+
+        &:first-child {
+            background-color: var(--forpet-color-medium);
+
+            .category-title {
+                --forpet-color-category-title: var(--forpet-color-light);
+                --forpet-hover-color-category-title: var(--forpet-color-light-shade);
+            }
+
+            a {
+                --bs-link-color: var(--forpet-color-light);
+                --bs-link-hover-color: var(--forpet-color-light-shade);
+            }
+        }
+
+        &:nth-child(4n) {
+            background-color: var(--forpet-color-medium);
+
+            .category-title {
+                --forpet-color-category-title: var(--forpet-color-light);
+                --forpet-hover-color-category-title: var(--forpet-color-light-shade);
+            }
+
+            a {
+                --bs-link-color: var(--forpet-color-light);
+                --bs-link-hover-color: var(--forpet-color-light-shade);
+            }
+
+            +li {
+                background-color: var(--forpet-color-medium);
+
+                a {
+                    --bs-link-color: var(--forpet-color-light);
+                    --bs-link-hover-color: var(--forpet-color-light-shade);
+                }
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+
+        &:nth-child(even) {
+            border-top-left-radius: convertPixelToEm(35px);
+            border-bottom-right-radius: convertPixelToEm(35px);
+        }
+
+        &:nth-child(odd) {
+            border-top-right-radius: convertPixelToEm(35px);
+            border-bottom-left-radius: convertPixelToEm(35px);
+        }
+
+    }
+
+    .category-title {
+        position: absolute;
+        top: 50px;
+        right: 36px;
+        font-size: convertPixelToEm(30px);
+        width: 300px;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            height: 3px;
+            width: 90px;
+            display: block;
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            background-color: var(--forpet-color-category-title);
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    :host {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 992px) {
+    :host {
+        font-size: 12px;
+    }
+    .category-list-wrapper .category-title{
+        top: 20px;
+        right: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        padding-left: 4%;
+        padding-right: 4%;
+        font-size: 9px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    :host {
+        font-size: 12px;
+        .entry-title{
+            margin-bottom: 36px;
+            font-size: 19px;
+        }
+    }
+    .category-list-wrapper {
+        li {
+            width: 100%;
+        }
+    }
+    .category-list-wrapper .category-title{
+        top: 30px;
+        right: 30px;
+    }
+}
+
+@media (max-width: 357px) {
+    :host {
+        font-size: 11px;
+    }
+    .category-list-wrapper .category-title{
+        top: 20px;
+        right: 20px;
+    }
+}

@@ -1,0 +1,31 @@
+<div class="entry-title">
+    <div>
+        <h4>محصولات</h4>
+        <h6>نمایش 1–16 از 43 نتیجه</h6>
+    </div>
+    <button type="button" class="btn btn-forpet-primary btn-sm product-filter-menu-toggler" (click)="productFilterShow=!productFilterShow">فیلترها</button>
+</div>
+<ng-template #productsArrived>
+    <ng-container *ngIf="products.length;else emptyMessage">
+        <div class="product-list-container">
+            <div class="product-list-wrapper">
+                <app-product-card *ngFor="let product of
+                    products;trackBy:identify" [product]="product"
+                    [productCount]="product.id |
+                    checkProductCount:iBasket.basketItems"></app-product-card>
+            </div>
+            <app-pagination></app-pagination>
+        </div>
+    </ng-container>
+
+    <ng-template #emptyMessage>
+        <app-empty-message>محصولی یافت نشد !</app-empty-message>
+    </ng-template>
+</ng-template>
+
+<ng-container *ngIf="!hasProductsArrived;else
+    productsArrived">
+    <div class="spinner spinner-small"></div>
+</ng-container>
+
+<app-product-filter-menu [(open)]="productFilterShow"></app-product-filter-menu>

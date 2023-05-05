@@ -1,0 +1,50 @@
+<div class="background-sign"></div>
+<div class="card-body">
+    <a class="thumbnail" [routerLink]="['/product', product.id, product.pageUrl || '']" [state]="product" [ngStyle]="{'background-image': product.goodImages.length ? 'url(' + product.goodImages[0].imageUrl + ')' : 'url(./assets/images/product-placeholder.png)'}"></a>
+
+    <div class="price-container">
+        <ng-container *ngIf="product.userGroupPrice?.price;else soon">
+            <span>
+                <del *ngIf="product.userGroupPrice?.discount">{{product.userGroupPrice?.price | irCurrency:'TOMAN'}}</del>
+                <ins>{{product.userGroupPrice?.price | irCurrency:'TOMAN'}}</ins>
+            </span>
+        </ng-container>
+        <ng-template #soon>
+            <h4>بزودی</h4>
+        </ng-template>
+        
+    </div>
+
+    <a class="product-name" [routerLink]="['/product',product.id, product.pageUrl || '']" [state]="product">
+        <h3 [attr.title]="product.goodParent?.name + ' ' + product.brand?.name">{{product.goodParent?.name}} {{product.brand?.name}}</h3>
+    </a>
+
+    <div class="menu-container">
+        <ul class="menu-wrapper">
+            <li>
+                <span>تولید کننده:</span>
+                <span>{{product.brand?.name || 'نامشخص'}}</span>
+            </li>
+            <li>
+                <span>کد کالا:</span>
+                <span>{{product.technicalCode || 'نامشخص'}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="add-to-card">
+        <button [disabled]="!product.userGroupPrice?.price || product.stock<=0" class="btn btn-forpet-tertiary btn-block" *ngIf="productCount==0;else addedBefore"
+            (click)="addToBasket(1)">
+            <span>
+                افزودن به سبد خرید
+            </span>
+            <span>
+                <i class="icon-forpet-shopping-cart"></i>
+            </span>
+        </button>
+        <ng-template #addedBefore>
+            <app-product-counter [(count)]="productCount" (countChange)="addToBasket($event)" [romoveOnZero]="true">
+            </app-product-counter>
+        </ng-template>
+    </div>
+</div>

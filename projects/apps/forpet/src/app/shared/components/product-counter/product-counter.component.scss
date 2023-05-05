@@ -1,0 +1,61 @@
+@use 'sass:math';
+$base-size: 16px; // Default
+
+@function strip-units($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function convertPixelToEm($pixels, $context: $base-size) {
+    @return #{math.div(strip-units($pixels), strip-units($context))}em;
+}
+
+// -------------------------
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: convertPixelToEm(41px);
+    font-size: $base-size;
+}
+
+span {
+    display: block;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    font-size: convertPixelToEm(23px);
+    user-select: none;
+    border: convertPixelToEm(1px, 23px) solid var(--forpet-color-medium-tint);
+    padding: convertPixelToEm(6.24px, 23px) convertPixelToEm(15.2px, 23px);
+    border-radius: convertPixelToEm(6px, 23px);
+    width: convertPixelToEm(60px, 23px);
+    line-height: 1;
+    margin: 0 convertPixelToEm(5px, 23px);
+    background-color: var(--forpet-color-light);
+}
+
+.btn {
+    --bs-btn-font-size: 1em;
+    --bs-btn-padding-x: 0.75em;
+    --bs-btn-padding-y: 0.375em;
+    --bs-btn-border-radius: 0.375em;
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+@media (max-width:1200px) {
+    div {
+        font-size: 13px;
+    }
+}
+
+@media (max-width:992px) {
+}
+
+@media (max-width:768px) {}
+
+@media (max-width:576px) {}
+
+@media (max-width:357px) {}

@@ -1,0 +1,222 @@
+
+
+<form [formGroup]="formGroup" (ngSubmit)="buttonSpinnerSwitch ||
+    submitHandler.emit(formGroup)" autocomplete="off">
+    <div class="form-fields-container">
+        <ng-content select="[header]"></ng-content>
+        <ng-container *ngFor="let formItem of formGroupTemplate"
+            [ngSwitch]="formItem.fieldAttribute.type">
+            <ng-container *ngSwitchCase="'text'">
+                <div [class]="formItem.containerClass">
+                    <label class="form-label" *ngIf="formItem.label">{{formItem.label}}<span
+                            *ngIf="formItem.labelStar">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text" *ngIf="formItem.icon">
+                            <i [class]="formItem.icon"></i>
+                        </span>
+                        <input class="form-control"
+                            [class]="[formItem.fieldClass, formGroup.controls[formItem.fieldAttribute.formControlName] | formGeneratorValidation]"
+                            [type]="formItem.fieldAttribute.type"
+                            autocomplete="off"
+                            [formControlName]="formItem.fieldAttribute.formControlName"
+                            [attr.placeholder]="formItem.fieldAttribute.placeholder">
+                        <button *ngIf="formItem.button" [disabled]="formGroup.invalid || buttonSpinnerSwitch"
+                            (click)="formItem.button.submitForm || formItem.button.clickHandler()"
+                            [type]="(formItem.button.submitForm) ? 'submit' :
+                            'button'" class="btn"
+                            [class]="formItem.button.class">{{formItem.button.label}}</button>
+                    </div>
+                    <ng-container *ngIf="formItem.errorAfterTouched;else
+                        doNotCheckTouched">
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid
+                            &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].touched">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-container>
+                    <ng-template #doNotCheckTouched>
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-template>
+
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'select'">
+                <div [class]="formItem.containerClass">
+                    <label class="form-label" *ngIf="formItem.label">{{formItem.label}}<span
+                            *ngIf="formItem.labelStar">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text" *ngIf="formItem.icon">
+                            <i [class]="formItem.icon"></i>
+                        </span>
+                        <select class="form-select" autocomplete="off"
+                        [class]="[formItem.fieldClass, formGroup.controls[formItem.fieldAttribute.formControlName] | formGeneratorValidation]"
+                            [formControlName]="formItem.fieldAttribute.formControlName">
+                            <option *ngFor="let option of
+                                formItem.fieldAttribute.selectOptions"
+                                [value]="option.value">
+                                {{option.text}}</option>
+                        </select>
+                    </div>
+                    <small class="invalid-feedback"
+                        *ngIf="formItem.validationUi &&
+                        formGroup.controls[formItem.fieldAttribute.formControlName].invalid">
+                        {{formItem.fieldErrorMessage}}
+                    </small>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'number'">
+                <div [class]="formItem.containerClass">
+                    <label class="form-label" *ngIf="formItem.label">{{formItem.label}}<span
+                            *ngIf="formItem.labelStar">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text" *ngIf="formItem.icon">
+                            <i [class]="formItem.icon"></i>
+                        </span>
+                        <input class="form-control"
+                        [class]="[formItem.fieldClass, formGroup.controls[formItem.fieldAttribute.formControlName] | formGeneratorValidation]"
+                            [type]="formItem.fieldAttribute.type"
+                            autocomplete="off"
+                            [formControlName]="formItem.fieldAttribute.formControlName"
+                            [attr.placeholder]="formItem.fieldAttribute.placeholder">
+                        <button *ngIf="formItem.button" [disabled]="formGroup.invalid || buttonSpinnerSwitch"
+                            (click)="formItem.button.submitForm || formItem.button.clickHandler()"
+                            [type]="(formItem.button.submitForm) ? 'submit' :
+                            'button'" class="btn"
+                            [class]="formItem.button.class">{{formItem.button.label}}</button>
+                    </div>
+                    <ng-container *ngIf="formItem.errorAfterTouched;else
+                        doNotCheckTouched4">
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid
+                            &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].touched">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-container>
+                    <ng-template #doNotCheckTouched4>
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-template>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'textarea'">
+                <div [class]="formItem.containerClass">
+                    <label class="form-label" *ngIf="formItem.label">{{formItem.label}}<span
+                            *ngIf="formItem.labelStar">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text" *ngIf="formItem.icon">
+                            <i [class]="formItem.icon"></i>
+                        </span>
+                        <textarea class="form-control"
+                        [class]="[formItem.fieldClass, formGroup.controls[formItem.fieldAttribute.formControlName] | formGeneratorValidation]"
+                            autocomplete="off"
+                            [formControlName]="formItem.fieldAttribute.formControlName"
+                            [attr.placeholder]="formItem.fieldAttribute.placeholder"></textarea>
+                    </div>
+                    <ng-container *ngIf="formItem.errorAfterTouched;else
+                        doNotCheckTouched3">
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid
+                            &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].touched">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-container>
+                    <ng-template #doNotCheckTouched3>
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-template>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'password'">
+                <div [class]="formItem.containerClass">
+                    <label class="form-label" *ngIf="formItem.label">{{formItem.label}}<span
+                            *ngIf="formItem.labelStar">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text" *ngIf="formItem.icon">
+                            <i [class]="formItem.icon"></i>
+                        </span>
+                        <ng-container
+                            *ngIf="formItem.fieldAttribute.hasTogglePassword;else
+                            hasNotTogglePassword">
+                            <input class="form-control has-toggler"
+                                appPasswordToggle
+                                #exportPasswordToggle="exportPasswordToggle"
+                                [class]="[formItem.fieldClass, formGroup.controls[formItem.fieldAttribute.formControlName] | formGeneratorValidation]"
+                                [type]="(exportPasswordToggle.isShow) ? 'text' :
+                                formItem.fieldAttribute.type"
+                                autocomplete="off"
+                                [formControlName]="formItem.fieldAttribute.formControlName"
+                                [attr.placeholder]="formItem.fieldAttribute.placeholder">
+                            <button type="button" class="btn password-toggler"
+                                [appPasswordToggleCtrl]="exportPasswordToggle">
+                                <i
+                                    [class]="(exportPasswordToggle.isShow) ?
+                                    'icon-password-show' :
+                                    'icon-password-hide'"></i>
+                            </button>
+                        </ng-container>
+                        <ng-template #hasNotTogglePassword>
+                            <input class="form-control"
+                            [class]="[formItem.fieldClass, formGroup.controls[formItem.fieldAttribute.formControlName] | formGeneratorValidation]"
+                                [type]="formItem.fieldAttribute.type"
+                                autocomplete="off"
+                                [formControlName]="formItem.fieldAttribute.formControlName"
+                                [attr.placeholder]="formItem.fieldAttribute.placeholder">
+                        </ng-template>
+                    </div>
+                    <ng-container *ngIf="formItem.errorAfterTouched;else
+                        doNotCheckTouched2">
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid
+                            &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].touched">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-container>
+                    <ng-template #doNotCheckTouched2>
+                        <small class="invalid-feedback"
+                            *ngIf="formItem.validationUi &&
+                            formGroup.controls[formItem.fieldAttribute.formControlName].invalid">
+                            {{formItem.fieldErrorMessage}}
+                        </small>
+                    </ng-template>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox'">
+                <label class="form-label" [class]="formItem.containerClass">
+                    {{formItem.label}}
+                    <input [type]="formItem.fieldAttribute.type"
+                        autocomplete="off"
+                        [formControlName]="formItem.fieldAttribute.formControlName">
+                    <span class="checkmark"></span>
+                </label>
+            </ng-container>
+            <ng-container *ngSwitchDefault>Form Field Is Empty</ng-container>
+        </ng-container>
+        <ng-content select="[footer]"></ng-content>
+        <button *ngIf="buttonLabel" type="submit" [disabled]="formGroup.invalid ||
+            buttonSpinnerSwitch" class="btn btn-success">
+            <div *ngIf="buttonSpinnerSwitch;else spinnerOff" class="spinner
+                spinner-small"></div>
+            <ng-template #spinnerOff>
+                {{buttonLabel}}
+            </ng-template>
+        </button>
+    </div>
+</form>

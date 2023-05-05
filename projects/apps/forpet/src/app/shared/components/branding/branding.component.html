@@ -1,0 +1,17 @@
+<span class="logo-container">
+    <a routerLink="/home">
+        <img src="./assets/images/logo.png" height="80" width="80" alt="website logo">
+        <h2>پت شاپ</h2>
+    </a>
+</span>
+
+<div class="dropdown-container">
+    <span>
+        <a href="tel:+989353728642" class="call-info">
+            <h6>Call Us Now</h6>
+            <h6>+989353728642</h6>
+        </a>
+    </span>
+
+    <app-mini-cart-popup [hasResponseArrived]="hasResponseArrived" [iBasket]="iBasket"></app-mini-cart-popup>
+</div>

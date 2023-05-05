@@ -1,0 +1,95 @@
+:host {
+    position: relative;
+}
+
+form {
+    input {
+        font-size: 16px;
+        padding-left: 42px;
+    }
+
+    button {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        padding: 0 12px;
+        border: none;
+    }
+}
+
+.suggestion-menu-container {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: var(--forpet-color-dark-contrast);
+    border: 1px solid var(--forpet-color-light-shade);
+    border-radius: 5px;
+    z-index: 1;
+
+    &.show {
+        display: block;
+    }
+
+}
+
+.suggestion-menu-wrapper {
+    font-size: 13px;
+
+    li {
+        outline: none;
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--forpet-color-light-shade);
+        }
+
+        &:not(.search-progress) {
+            &:hover {
+                background-color: var(--forpet-color-light-shade);
+            }
+        }
+        &.active, &:focus{
+            background-color: var(--forpet-color-light-shade);
+        }
+    }
+
+    a {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 10px;
+    }
+}
+
+.search-progress {
+    color: var(--forpet-color-tertiary);
+    padding: 24px 10px;
+
+    .spinner {
+        margin: 0 auto;
+    }
+}
+
+.suggestion-item-content {
+    margin-right: 10px;
+    color: var(--forpet-color-dark);
+
+    p {
+        margin-bottom: 0;
+
+        &:last-child {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+    }
+
+    span {
+        color: var(--forpet-color-tertiary-tint);
+
+        &:not(:last-child) {
+            &::after {
+                content: ' , ';
+            }
+        }
+    }
+}

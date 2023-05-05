@@ -1,0 +1,25 @@
+:host{
+    margin-top: 3rem;
+    display: block;
+}
+.pagination-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        --bs-btn-bg: var(--bs-white);
+        --bs-btn-hover-bg: var(--bs-white);
+        --bs-btn-color:var(--forpet-color-tertiary);
+        --bs-btn-hover-border-color:var(--forpet-color-tertiary);
+        --bs-btn-border-color:var(--bs-gray-500);
+        --bs-btn-font-weight:700;
+        margin: 0 3px;
+        &:active{
+            transform: scale(0.98);
+        }
+
+    }
+    .current{
+        border-bottom: 3px solid;
+    }
+}

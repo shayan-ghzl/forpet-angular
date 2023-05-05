@@ -1,0 +1,74 @@
+:host{
+    ::ng-deep {
+        app-navbar {
+            border-bottom-right-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+    
+        app-footer {
+            footer {
+                padding: 0 !important;
+                border: none !important;
+            }
+    
+            .menus-content {
+                background-color: var(--forpet-color-medium);
+                border-bottom: 1px solid var(--bs-gray-600);
+                color: var(--forpet-color-light);
+    
+                .scroll-zero {
+                    background-color: rgba(var(--bs-secondary-rgb), 0.7) !important;
+                    opacity: 0.9 !important;
+                    color: var(--bs-white) !important;
+    
+                    &:hover {
+                        background-color: rgba(var(--bs-secondary-rgb), 1) !important;
+                        opacity: 1 !important;
+                    }
+                }
+            }
+    
+            .secondary-menu-wrapper a {
+                --bs-link-color: var(--forpet-color-light) !important;
+                --bs-link-hover-color: var(--forpet-color-light-shade) !important;
+            }
+        }
+    }
+}
+
+header {
+    background-color: var(--forpet-color-primary);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position-x: -50px;
+}
+
+#site-content{
+    background-color: var(--forpet-color-light);
+}
+
+@media (max-width: 1200px) {
+    header {
+        background-position-x: -250px;
+    }
+}
+
+@media (max-width: 992px) {
+    header {
+        background-position-x: -500px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        background-position-x: -750px;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        background-position-x: -800px;
+    }
+}
+
+@media (max-width: 357px) {}

@@ -1,0 +1,44 @@
+
+<form action="#" role="search" method="get" autocomplete="off"
+    aria-label="animalshop search form">
+    <input type="text" class="form-control form-control-sm" value="" name="s" placeholder="جستجو کنید"
+        autocomplete="off" (focus)="isFocus = true" (blur)="isFocus = false" (keydown.arrowdown)="firstItem.focus()" #searchInput>
+    <button type="submit" class="btn">
+        <i class="icon-forpet-search"></i>
+    </button>
+</form>
+<div class="suggestion-menu-container shadow-sm" [ngClass]="{'show': isFocus && requestSent}">
+    <ul class="suggestion-menu-wrapper">
+        <li class="search-progress">
+            <div class="spinner spinner-mini"></div>
+        </li>
+        <li class="suggestion-menu-item" #firstItem tabindex="0" appSelectable (keydown.arrowup)="searchInput.focus()">
+            <a routerLink="/home">
+                <i class="icon-forpet-search"></i>
+                <div class="suggestion-item-content">
+                    <p>اسباب بازی گربه ای تیزر Feather با حسگر مادون قرمز </p>
+                    <p>در دسته : <span>لوازم خانگی</span><span>موتور الاغ</span></p>
+                </div>
+            </a>
+        </li>
+        <li class="suggestion-menu-item" tabindex="0" appSelectable>
+            <a routerLink="/home">
+                <i class="icon-forpet-search"></i>
+                <div class="suggestion-item-content">
+                    <p>اسباب بازی گربه ای تیزر Feather با حسگر مادون قرمز </p>
+                    <p>در دسته : <span>لوازم خانگی</span><span>موتور الاغ</span></p>
+                </div>
+            </a>
+        </li>
+        <li class="suggestion-menu-item" tabindex="0" appSelectable>
+            <a routerLink="/home">
+                <i class="icon-forpet-search"></i>
+                <div class="suggestion-item-content">
+                    <p>اسباب بازی گربه ای تیزر Feather با حسگر مادون قرمز </p>
+                    <p>در دسته : <span>لوازم خانگی</span><span>موتور الاغ</span></p>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+</div>

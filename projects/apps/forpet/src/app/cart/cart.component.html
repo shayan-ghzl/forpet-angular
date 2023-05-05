@@ -1,0 +1,111 @@
+
+<ng-template #listfulfilled>
+    <div class="cart-preview-container">
+        <ul class="cart-preview-wrapper">
+            <li class="shadow-sm" *ngFor="let basketItem of
+                iBasket.basketItems;trackBy:identify">
+                <span class="product-thumbnail">
+                    <a [routerLink]="['/product', basketItem.id,
+                        basketItem.goodPageUrl || '']"
+                        [ngStyle]="{'background-image': basketItem.imageUrl ?
+                        'url(' + basketItem.imageUrl + ')' :
+                        'url(./assets/images/product-placeholder.png)'}"></a>
+                </span>
+                <div class="item-info">
+                    <div class="product-name">
+                        <a [routerLink]="['/product', basketItem.id,
+                            basketItem.goodPageUrl || '']">
+                            <h5 [title]="basketItem.goodName">{{basketItem.goodName}}</h5>
+                        </a>
+                        <button type="button" class="btn btn-secondary"
+                            (click)="removeProduct(basketItem)">
+                            <i class="icon-forpet-close"></i>
+                        </button>
+                    </div>
+                    <div class="meta-menu-container">
+                        <ul class="meta-menu-wrapper">
+                            <li>
+                                <span>تولید کننده: </span>
+                                <span>{{basketItem.brandName || 'نامشخص'}}</span>
+                            </li>
+                            <li>
+                                <span>کد کالا: </span>
+                                <span>833127150</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <span class="price-container">
+                        <del *ngIf="basketItem.discount">{{basketItem.price |
+                            irCurrency:'TOMAN'}}</del>
+                        <ins>{{basketItem.finalPrice | irCurrency:'TOMAN'}}</ins>
+                    </span>
+                    <app-product-counter [(count)]="basketItem.count"
+                        (countChange)="addToBasket(basketItem)"
+                        [romoveOnZero]="true"></app-product-counter>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="cart-invoice-container">
+        <div class="shadow-sm">
+            <div class="coupon">
+                <app-form-generator [formGroupTemplate]="couponFormTemplate"
+                    (submitHandler)="submitHandler($event)"></app-form-generator>
+                <!-- <label class="form-label" for="coupon-code">کد تخفیف:</label>
+            <div class="form-group">
+                <input type="text" id="coupon-code" class="form-control form-control-sm" autocomplete="off" placeholder="کد تخفیف">
+                <button type="button" class="btn btn-sm btn-success">اعمال کوپن</button>
+            </div> -->
+            </div>
+            <h5>جمع کل سبد خرید</h5>
+            <div class="invoice-menu-container">
+                <ul class="invoice-menu-wrapper">
+                    <li>
+                        مجموع
+                        <strong>
+                            <span>
+                                <ins>{{iBasket.totalPureSum}}</ins>
+                            </span>
+                        </strong>
+                    </li>
+                    <li>
+                        مجموع تخفیف
+                        <strong>
+                            <span>
+                                <ins>{{iBasket.totalDiscount}}</ins>
+                            </span>
+                        </strong>
+                    </li>
+                    <li>
+                        <strong>
+                            مبلق قابل پرداخت
+                        </strong>
+                        <strong>
+                            <span>
+                                <ins>{{iBasket.totalSum}}</ins>
+                            </span>
+                        </strong>
+                    </li>
+
+                </ul>
+            </div>
+            <a routerLink="/cart" class="btn btn-block btn-hero
+                btn-forpet-tertiary">
+                ادامه جهت تسویه حساب
+            </a>
+        </div>
+        <p class="notice">کالا های موجود در سبد شما ثبت و رزرو نشده اند ، برای تکمیل خرید
+            سفارشات را ثبت نهایی کنید</p>
+    </div>
+</ng-template>
+<ng-container *ngTemplateOutlet="hasResponseArrived ? iBasket.basketItems.length
+    ? listfulfilled : listempty : listpending"></ng-container>
+<ng-template #listpending>
+    <div class="spinner spinner-small"></div>
+</ng-template>
+<ng-template #listempty>
+    <div class="empty-message">
+        <h5>در حال حاضر سبد شما خالی است.</h5>
+        <a routerLink="/home" class="btn btn-forpet-primary">خرید از فروشگاه</a>
+    </div>
+</ng-template>

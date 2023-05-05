@@ -1,0 +1,152 @@
+:root {
+    // initialize forpet colors
+    --forpet-color-primary: #ffcc01;
+    --forpet-color-primary-rgb: 255, 204, 1;
+    --forpet-color-primary-contrast: #000000;
+    --forpet-color-primary-contrast-rgb: 0, 0, 0;
+    --forpet-color-primary-shade: #e0b401;
+    --forpet-color-primary-tint: #ffd11a;
+
+    --forpet-color-secondary: #01d4ef;
+    --forpet-color-secondary-rgb: 1, 212, 239;
+    --forpet-color-secondary-contrast: #000000;
+    --forpet-color-secondary-contrast-rgb: 0, 0, 0;
+    --forpet-color-secondary-shade: #01bbd2;
+    --forpet-color-secondary-tint: #1ad8f1;
+
+    --forpet-color-tertiary: #3a126c;
+    --forpet-color-tertiary-rgb: 58, 18, 108;
+    --forpet-color-tertiary-contrast: #ffffff;
+    --forpet-color-tertiary-contrast-rgb: 255, 255, 255;
+    --forpet-color-tertiary-shade: #33105f;
+    --forpet-color-tertiary-tint: #4e2a7b;
+
+	--forpet-color-success: #12af3a;
+	--forpet-color-success-rgb: 18,175,58;
+	--forpet-color-success-contrast: #ffffff;
+	--forpet-color-success-contrast-rgb: 255,255,255;
+	--forpet-color-success-shade: #109a33;
+	--forpet-color-success-tint: #2ab74e;
+
+    --forpet-color-warning: #ffc409;
+    --forpet-color-warning-rgb: 255, 196, 9;
+    --forpet-color-warning-contrast: #000000;
+    --forpet-color-warning-contrast-rgb: 0, 0, 0;
+    --forpet-color-warning-shade: #e0ac08;
+    --forpet-color-warning-tint: #ffca22;
+
+    --forpet-color-danger: #eb445a;
+    --forpet-color-danger-rgb: 235, 68, 90;
+    --forpet-color-danger-contrast: #ffffff;
+    --forpet-color-danger-contrast-rgb: 255, 255, 255;
+    --forpet-color-danger-shade: #cf3c4f;
+    --forpet-color-danger-tint: #ed576b;
+
+	--forpet-color-medium: #3d3d3d;
+	--forpet-color-medium-rgb: 61,61,61;
+	--forpet-color-medium-contrast: #ffffff;
+	--forpet-color-medium-contrast-rgb: 255,255,255;
+	--forpet-color-medium-shade: #363636;
+	--forpet-color-medium-tint: #505050;
+
+    --forpet-color-light: #f4f5f8;
+    --forpet-color-light-rgb: 244, 245, 248;
+    --forpet-color-light-contrast: #000000;
+    --forpet-color-light-contrast-rgb: 0, 0, 0;
+    --forpet-color-light-shade: #d7d8da;
+    --forpet-color-light-tint: #f5f6f9;
+
+    --forpet-color-dark: #000;
+    --forpet-color-dark-rgb: 0, 0, 0;
+    --forpet-color-dark-contrast: #ffffff;
+    --forpet-color-dark-contrast-rgb: 255, 255, 255;
+    --forpet-color-dark-shade: #000000;
+    --forpet-color-dark-tint: #1a1a1a;
+
+    // initialize bootstrap colors
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark-rgb: 33, 37, 41;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 0, 0, 0;
+    --bs-body-color-rgb: 33, 37, 41;
+    --bs-body-bg-rgb: 255, 255, 255;
+}
+
+:root {
+
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-border-width: 1px;
+    --bs-border-style: solid;
+    --bs-border-color: #dee2e6;
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+    --bs-border-radius: 0.375rem;
+    --bs-border-radius-sm: 0.25rem;
+    --bs-border-radius-lg: 0.5rem;
+    --bs-border-radius-xl: 1rem;
+    --bs-border-radius-2xl: 2rem;
+    --bs-border-radius-pill: 50rem;
+
+    // forpet variables using in style reset
+    --forpet-heading-font-family: "MjCasablanca", MjCasablanca;
+    --forpet-heading-font-weight: 700;
+    --forpet-heading-line-height: 1.2;
+
+    // bootstrap variables using in style reset
+    // --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberatforpet Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    // --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberatforpet Mono", "Courier New", monospace;
+    --bs-font-sans-serif: "Samim", Samim;
+    --bs-font-monospace: "monospace", monospace;
+    --bs-body-color: #212529;
+    --bs-body-bg: #fff;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-link-color: var(--forpet-color-tertiary-tint);
+    --bs-link-hover-color: var(--forpet-color-tertiary-shade);
+    --bs-body-text-align: right;
+    --bs-code-color: #d63384;
+    --bs-highlight-bg: #fff3cd;
+}
+
+@media (prefers-color-scheme: dark) {}

@@ -1,0 +1,90 @@
+@use 'sass:math';
+$base-size: 13px; // Default
+
+@function strip-units($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function convertPixelToEm($pixels, $context: $base-size) {
+    @return #{math.div(strip-units($pixels), strip-units($context))}em;
+}
+
+// ------------------------------------------------
+:host {
+    position: relative;
+    margin: 0 10%;
+    background-color: var(--forpet-color-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: convertPixelToEm(10px);
+    padding-left: 14px;
+    font-size: $base-size;
+}
+
+.primary-menu-wrapper {
+    display: flex;
+    white-space: nowrap;
+    font-weight: var(--forpet-heading-font-weight);
+    text-align: center;
+    // overflow: auto;
+    // scrollbar-width: none;
+    // -ms-overflow-style: none;
+    // &::-webkit-scrollbar {
+    //     width: 0;
+    // }
+    a {
+        --bs-link-color: var(--forpet-color-light);
+        --bs-link-hover-color: var(--forpet-color-primary);
+        padding: convertPixelToEm(14px) convertPixelToEm(16px);
+        display: block;
+    }
+
+
+
+
+
+}
+
+// .hamburger-btn {
+//     display: none;
+// }
+
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {}
+
+@media (min-width: 769px) {
+    app-search-form {
+        flex: 0 0 auto;
+        width: 33.333333%;
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        margin: 60px 4% 0 4%;
+        padding-left: 0;
+    }
+
+    app-search-form {
+        position: absolute;
+        top: -100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    :host {
+        font-size: 12px;
+    }
+
+
+}
+
+@media (max-width: 357px) {
+    :host {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,11 @@
+<header style="background-image:url('./assets/images/shape-bg-layout.svg');">
+    <app-toolbar class="shadow" [hasResponseArrived]="hasResponseArrived" [iBasket]="iBasket"></app-toolbar>
+    <app-branding [hasResponseArrived]="hasResponseArrived" [iBasket]="iBasket"></app-branding>
+    <app-navbar></app-navbar>
+</header>
+
+<div id="site-content">
+    <router-outlet></router-outlet>
+</div>
+
+<app-footer></app-footer>

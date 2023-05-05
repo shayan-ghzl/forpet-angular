@@ -1,0 +1,9 @@
+<div>
+    <button type="button" [disabled]="disableAdd" class="btn" [ngClass]="{'btn-forpet-tertiary' : !disableAdd}" (click)="addition()">
+        <i class="icon-forpet-plus"></i>
+    </button>
+    <span>{{count}}</span>
+    <button type="button" [disabled]="disableSubtract" class="btn" [ngClass]="{'btn-forpet-tertiary' : !disableSubtract}" (click)="subtraction()">
+        <i [class]="(romoveOnZero) ? (count<=1) ? 'icon-forpet-trash' : 'icon-forpet-minus' : 'icon-forpet-minus'"></i>
+    </button>
+</div>

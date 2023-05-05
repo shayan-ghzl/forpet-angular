@@ -1,0 +1,142 @@
+<section id="hero" style="background-image:url('./assets/images/shape-bg.svg');">
+    <header>
+        <app-toolbar class="shadow" [hasResponseArrived]="hasResponseArrived"
+            [iBasket]="iBasket"></app-toolbar>
+        <app-branding [hasResponseArrived]="hasResponseArrived"
+            [iBasket]="iBasket"></app-branding>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="hero-body">
+
+        <div class="motion-container">
+            <div class="dog-head">
+                <img src="./assets/images/dog.png" alt="dog head">
+            </div>
+            <div class="cat-head">
+                <img src="./assets/images/cat.png" alt="cat head">
+            </div>
+            <div class="bird-head">
+                <img src="./assets/images/bird.png" alt="bird head">
+            </div>
+        </div>
+
+        <div class="advertising-container">
+            <div class="slogan">
+                <h1>
+                    DOG AND CAT
+                    <br>
+                    FOOD STORE
+                </h1>
+                <h3>in the province</h3>
+            </div>
+            <div class="promotion">
+                <span>
+                    <a routerLink="/shop">
+                        <img src="./assets/images/discount-offer.png"
+                            alt="discount sale offer">
+                    </a>
+                </span>
+                <span>
+                    <a routerLink="/shop">
+                        <img src="./assets/images/newest-offer.png" alt="newest
+                            sale offer">
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="site-content">
+    <section id="trending">
+        <div class="section-trending-title shadow">
+            <h1>پرفروش ترین ها</h1>
+        </div>
+        <ng-template #trendProductsArrived>
+            <ng-container *ngIf="trendProducts.length;else emptyMessage">
+                <div class="swiper-slider-container">
+                    <swiper #swiper [config]="categorySliderConfig">
+                        <ng-template swiperSlide *ngFor="let product of trendProducts;trackBy:identify">
+                            <app-product-card [product]="product"
+                                [productCount]="product.id |
+                                checkProductCount:iBasket.basketItems"></app-product-card>
+                        </ng-template>
+                    </swiper>
+                    <ng-container *ngIf="swiper.swiperRef as swiperObj">
+                        <button type="button" [disabled]="swiperObj.isEnd" (click)="swiperObj.slideNext()"
+                            class="btn btn-forpet-medium swiper-button-prev"></button>
+                        <button type="button" [disabled]="swiperObj.isBeginning" (click)="swiperObj.slidePrev()"
+                            class="btn btn-forpet-medium swiper-button-next"></button>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <ng-template #emptyMessage>
+                <app-empty-message>محصولی یافت نشد !</app-empty-message>
+            </ng-template>
+        </ng-template>
+        <ng-container *ngIf="!hasTrendProductsArrived;else
+            trendProductsArrived">
+            <div class="spinner spinner-small"></div>
+        </ng-container>
+    </section>
+
+    <section id="category">
+        <div class="section-title">
+            <h5>دسته بندی محصولات</h5>
+            <h5>CATEGORIES</h5>
+        </div>
+        <ng-template #categoriesArrived>
+            <ng-container *ngIf="categories.length;else emptyMessage">
+                <div class="swiper-slider-container">
+                    <swiper #swiper [config]="categorySliderConfig">
+                        <ng-template swiperSlide *ngFor="let category of categories;trackBy:identify">
+                            <a class="category-card" [routerLink]="['/category', category.id, category.pageUrl || '']" [state]="category">
+                                <h5>{{category.name}}</h5>
+                                <div class="category-thumbnail shadow" [ngStyle]="{'background-image': category.groupImageDtos?.length ? 'url(' + category.groupImageDtos![0].imageUrl + ')' : 'url(./assets/images/category-placeholder.png)'}"></div>
+                            </a>
+                        </ng-template>
+                    </swiper>
+                    <ng-container *ngIf="swiper.swiperRef as swiperObj">
+                        <button type="button" [disabled]="swiperObj.isEnd" (click)="swiperObj.slideNext()"
+                            class="btn btn-forpet-medium swiper-button-prev"></button>
+                        <button type="button" [disabled]="swiperObj.isBeginning" (click)="swiperObj.slidePrev()"
+                            class="btn btn-forpet-medium swiper-button-next"></button>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <ng-template #emptyMessage>
+                <app-empty-message>دسته بندی یافت نشد !</app-empty-message>
+            </ng-template>
+        </ng-template>
+        <ng-container *ngIf="!hasCategoriesArrived;else categoriesArrived">
+            <div class="spinner spinner-small"></div>
+        </ng-container>
+    </section>
+
+    <section id="brand">
+        <div class="section-title">
+            <h5>برندها</h5>
+            <h5>BRANDS</h5>
+        </div>
+        <ng-template #brandsArrived>
+            <ng-container *ngIf="brands.length;else emptyMessage">
+                <div class="brand-grid-container">
+                    <ul class="brand-grid-wrapper">
+                        <li swiperSlide *ngFor="let brand of brands;trackBy:identify">
+                            <a class="brand-card" [routerLink]="['/brand', brand.id, brand.pageUrl || '']" [state]="brand" [title]="brand.name">
+                                <div class="brand-thumbnail shadow" [ngStyle]="{'background-image': brand.image ? 'url(' + brand.image + ')' : 'url(./assets/images/brand-placeholder.png)'}"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+            <ng-template #emptyMessage>
+                <app-empty-message>برندی یافت نشد !</app-empty-message>
+            </ng-template>
+        </ng-template>
+        <ng-container *ngIf="!hasBrandsArrived;else brandsArrived">
+            <div class="spinner spinner-small"></div>
+        </ng-container>
+    </section>
+</div>
+<app-footer></app-footer>

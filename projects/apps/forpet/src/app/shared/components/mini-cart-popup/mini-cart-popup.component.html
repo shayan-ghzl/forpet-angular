@@ -1,0 +1,71 @@
+<div class="dropdown mini-cart-dropdown" appDropdown
+  #miniCartDropdown="exportDropdown">
+  <button class="btn btn-forpet-success dropdown-toggler"
+    [appDropdownCtrl]="miniCartDropdown">
+    <i class="icon-forpet-shopping-cart"></i>
+    <span class="badge counter" *ngIf="iBasket.basketItems.length as itemsNumber">{{itemsNumber}}</span>
+  </button>
+  <div class="dropdown-menu shadow">
+    <div class="dropdown-inner">
+      <ng-container *ngTemplateOutlet="hasResponseArrived ? iBasket.basketItems.length ?
+        listfulfilled : listempty : listpending">
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #listpending>
+  <div class="search-progress">
+    <div class="spinner spinner-small"></div>
+  </div>
+</ng-template>
+
+<ng-template #listempty>
+  <div class="empty-message">
+    <h5>سبد خالی است</h5>
+  </div>
+</ng-template>
+
+<ng-template #listfulfilled>
+  <header>
+    <h6>جمع کل : {{iBasket.totalSum}}</h6>
+    <a routerLink="/cart" class="btn btn-sm btn-forpet-primary">
+      سبد خرید
+    </a>
+  </header>
+  <div class="menu-container">
+    <ul class="menu-wrapper">
+      <li *ngFor="let orderItem of iBasket.basketItems">
+        <span class="item-thumbnail">
+          <a [routerLink]="['/product', orderItem.id, orderItem.goodPageUrl || '']">
+          <img *ngIf="orderItem.imageUrl as thumbnail;else noImage" [src]="thumbnail" alt="product
+          thumbnail">
+          <ng-template #noImage>
+              <img src="./assets/images/product-placeholder.png" alt="product placeholder thumbnail">
+          </ng-template>
+          </a>
+        </span>
+        <div class="item-info">
+          <div class="product-name-container">
+            <a [routerLink]="['/product', orderItem.id, orderItem.goodPageUrl || '']" [attr.title]="orderItem.goodName">
+              {{orderItem.goodName}}
+            </a>
+            <button class="btn btn-secondary" type="button" (click)="removeProduct(orderItem)">
+              <i class="icon-forpet-close"></i>
+            </button>
+          </div>
+          <div class="product-meta-container">
+            <ul>
+              <li>دسته بندی : {{orderItem.brandName}}</li>
+              <li>کد کالا : 1054963</li>
+            </ul>
+          </div>
+          <div class="product-quantity-container">
+            <span class="quantity">تعداد : {{orderItem.count}}</span> | <span class="price">قیمت
+              : {{orderItem.finalPrice | irCurrency:'TOMAN'}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ng-template>

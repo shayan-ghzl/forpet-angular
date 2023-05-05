@@ -1,0 +1,38 @@
+<div class="dropdown account-dropdown" appDropdown #accountDropdown="exportDropdown">
+   
+    <button class="btn dropdown-toggler" [appDropdownCtrl]="accountDropdown">
+        <i class="icon-forpet-account"></i>
+        <span>پروفایل من</span>
+    </button>
+
+    <div class="dropdown-menu shadow">
+      
+        <div class="dropdown-inner">
+            <div class="id-container">
+                <img src="./assets/images/default-avatar.jpg" width="70" height="70" alt="profile picture">
+                <h6>شایان غزالی</h6>
+            </div>
+
+            <div class="menu-container">
+                <ul class="menu-wrapper">
+                    <li>
+                        <a href="#">
+                        <i class="icon-forpet-dashboard"></i>
+                            داشبورد
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                        <i class="icon-forpet-orders"></i>
+                            لیست سفارشات
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button type="button" class="btn btn-sm btn-forpet-primary btn-block">خروج</button>
+        </div>
+
+    </div>
+
+</div>
