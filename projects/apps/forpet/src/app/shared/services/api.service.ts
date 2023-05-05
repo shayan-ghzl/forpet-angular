@@ -49,8 +49,12 @@ export class ApiService {
     );
   }
 
-  getGoodGroups() {
-    return this.http.get<{ data: IGoodGroupDto[] }>(environment.apiUrl + 'GoodGroups/GetGoodGroups').pipe(
+  getGoodGroups(parameters: Parameter) {
+    let params = new HttpParams();
+    for (const [key, value] of Object.entries(parameters)) {
+      params = params.append(key, value);
+    }
+    return this.http.get<{ data: IGoodGroupDto[] }>(environment.apiUrl + 'GoodGroups/GetGoodGroups', { params: params }).pipe(
       take(1),
       timeout(13000)
     );

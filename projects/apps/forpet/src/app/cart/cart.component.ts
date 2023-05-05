@@ -5,6 +5,8 @@ import { BasketService } from '../shared/services/basket.service';
 import { IBasket, Product } from '../shared/models/api-models';
 import { FormGroup } from '@angular/forms';
 import { FormGenerator } from '../shared/components/form-generator/form-generator.component';
+import { environment } from '../../environments/environment';
+import { FakeApiService } from '../shared/services/fake-api.service';
 
 @Component({
   selector: 'app-cart',
@@ -32,6 +34,7 @@ export class CartComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
   constructor(
     private apiService: ApiService,
+    private fakeApiService: FakeApiService,
     private basketService: BasketService,
   ) {
 
@@ -50,18 +53,29 @@ export class CartComponent implements OnInit, OnDestroy {
 
   basketUpdateSubscription!: Subscription;
   addToBasket(basketItem: Product) {
-    this.basketUpdateSubscription?.unsubscribe();
-    this.basketUpdateSubscription = this.basketService.updateBasket(basketItem).subscribe();
+    if (environment.useFakeApi) {
+      this.fakeApiService.fakeUpdateBasket(basketItem);
+    } else {
+      this.basketUpdateSubscription?.unsubscribe();
+      this.basketUpdateSubscription = this.basketService.updateBasket(basketItem).subscribe();
+    }
   }
 
   removeProduct(product: Product) {
     if (confirm(`Are You Sure ? ${product.goodName}`)) {
-      this.subscription.add(
-        this.basketService.updateBasket({
+      if (environment.useFakeApi) {
+        this.fakeApiService.fakeUpdateBasket({
           ...product,
           count: 0
-        }).subscribe()
-      );
+        });
+      } else {
+        this.subscription.add(
+          this.basketService.updateBasket({
+            ...product,
+            count: 0
+          }).subscribe()
+        );
+      }
     }
   }
 

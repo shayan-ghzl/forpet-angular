@@ -56,6 +56,7 @@ export class BasketService {
     totalPureSum: '',
     totalSum: '',
   });
+
   getBasketCalculation$: Observable<BasketCalculation> = this.basketCalculationSource.asObservable().pipe(
     tap(console.log)
   );
@@ -65,10 +66,11 @@ export class BasketService {
   }
   // ---------------------------
   // IBasket full Store
-  private iBasketSource = new BehaviorSubject<IBasket>(<any>null);
+  // we set this to public cause we are using some fake api service
+  public iBasketSource = new BehaviorSubject<IBasket>(<any>null);
   getIBasket$: Observable<IBasket> = this.iBasketSource.asObservable().pipe(
-    tap(console.log),
     filter(x => x != null),
+    tap(console.log),
   );
 
   private setIBasket(iBasket: IBasket) {
@@ -86,9 +88,12 @@ export class BasketService {
   }
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {
     this.basketId = localStorage.getItem('bi') || environment.emptyGuid;
+    if (!environment.useFakeApi) {
+      this.getBasketById().subscribe();
+    }
   }
 
   getBasketById() {

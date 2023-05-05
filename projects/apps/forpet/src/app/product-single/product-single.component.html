@@ -2,13 +2,11 @@
     <div class="product-face">
         <swiper #swiper [config]="config">
             <ng-template swiperSlide *ngFor="let thumbnail of product.goodImages">
-                <lib-ngx-image-zoom [zoomMode]="zoomMode" [enableLens]="enableLens" [lensWidth]="160" [lensHeight]="160" [thumbImage]="thumbnail.imageUrl"
-                    [fullImage]="thumbnail.imageUrl">
+                <lib-ngx-image-zoom [zoomMode]="zoomMode" [enableLens]="enableLens" [lensWidth]="160" [lensHeight]="160" [thumbImage]="thumbnail.imageUrl" [fullImage]="thumbnail.imageUrl">
                 </lib-ngx-image-zoom>
             </ng-template>
             <ng-template swiperSlide *ngIf="product.goodImages.length==0">
-                <lib-ngx-image-zoom [zoomMode]="zoomMode" [enableLens]="enableLens" [lensWidth]="160" [lensHeight]="160" thumbImage="assets/images/product-placeholder.png"
-                    fullImage="assets/images/product-placeholder.png">
+                <lib-ngx-image-zoom [zoomMode]="zoomMode" [enableLens]="enableLens" [lensWidth]="160" [lensHeight]="160" thumbImage="assets/images/product-placeholder.png" fullImage="assets/images/product-placeholder.png">
                 </lib-ngx-image-zoom>
             </ng-template>
         </swiper>
@@ -30,69 +28,66 @@
     <div class="product-text">
         <h5>{{product.goodParent?.name}} {{product.brand?.name}}</h5>
         <div>
-            <div class="summery">
-                <p class="desc">
-                    {{product.description}}
-                </p>
-                <div class="metadata">
-                    <div class="metadata-menu-container">
-                        <ul class="metadata-menu-wrapper">
-                            <li>کد فنی : {{product.technicalCode}}</li>
-                            <li>برند : <a href="#">ایساکو</a></li>
-                            <li>دسته بندی : <a href="#">بدنه</a></li>
-                        </ul>
-                    </div>
-                    <div *ngIf="product.stock>0 && product.stock<10" class="stock">
-                        <i class="icon-ringbell-icon"></i>
-                        <span>{{product.stock}} عدد در انبار باقیست.</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="calculation">
-                <ng-container *ngIf="product.userGroupPrice && product.stock>0;else unavailable">
-                    <span class="item-price">
-                        <span class="discount-percentage" *ngIf="product.userGroupPrice.discount">
-                            <del>{{product.userGroupPrice.price | irCurrency}}</del>
-                            <span class="badge">10%</span>
-                        </span>
-                        <ins>{{(product.userGroupPrice.price - product.userGroupPrice.discount) | irCurrency}}</ins>
-                    </span>
-
-
-
-
-                    <div class="add-to-card">
-                        <button [disabled]="!product.userGroupPrice?.price" class="btn btn-forpet-tertiary btn-block" *ngIf="productCount==0;else addedBefore"
-                            (click)="addToBasket(1)">
-                            <span>
-                                افزودن به سبد خرید
-                            </span>
-                            <span>
-                                <i class="icon-forpet-shopping-cart"></i>
-                            </span>
-                        </button>
-                        <ng-template #addedBefore>
-                            <app-product-counter [(count)]="productCount" (countChange)="addToBasket($event)" [romoveOnZero]="true">
-                            </app-product-counter>
-                        </ng-template>
-                    </div>
-
-
-
-
-                </ng-container>
-                <ng-template #unavailable>
-                    <span class="item-unavailable">
-                        <h5 class="supplying-title">
-                            <span>
-                                در‌حال تامین
-                            </span>
-                        </h5>
-                        <p>این کالا فعلا موجود نیست.</p>
-                    </span>
-                </ng-template>
-            </div>
+            <ng-container *ngTemplateOutlet="productDetails;context:{$implicit: product, available: (product.userGroupPrice && product.userGroupPrice.price && product.stock>0)}"></ng-container>
         </div>
     </div>
 </section>
+
+<ng-template #productDetails let-product let-available="available">
+    <div class="summery">
+        <p class="desc">
+            {{product.description}}
+        </p>
+        <div class="metadata">
+            <div class="metadata-menu-container">
+                <ul class="metadata-menu-wrapper">
+                    <li>کد فنی : {{product.technicalCode}}</li>
+                    <li>برند : <a href="#">ایساکو</a></li>
+                    <li>دسته بندی : <a href="#">بدنه</a></li>
+                </ul>
+            </div>
+            <div *ngIf="available" class="stock">
+                <i class="icon-ringbell-icon"></i>
+                <span>موجودی : {{product.stock}} عدد در انبار باقیست.</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="calculation">
+        <ng-container *ngIf="available;else unavailable">
+            <span class="item-price">
+                <span class="discount-percentage" *ngIf="product.userGroupPrice.discount">
+                    <del>{{product.userGroupPrice.price | irCurrency}}</del>
+                    <span class="badge">10%</span>
+            </span>
+            <ins>{{(product.userGroupPrice.price - product.userGroupPrice.discount) | irCurrency}}</ins>
+            </span>
+            <div class="add-to-card">
+                <button class="btn btn-forpet-tertiary btn-block" *ngIf="productCount==0;else addedBefore" (click)="addToBasket(1)">
+                    <span>
+                        افزودن به سبد خرید
+                    </span>
+                    <span>
+                        <i class="icon-forpet-shopping-cart"></i>
+                    </span>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #addedBefore>
+    <app-product-counter [(count)]="productCount" (countChange)="addToBasket($event)" [romoveOnZero]="true">
+    </app-product-counter>
+</ng-template>
+
+<ng-template #unavailable>
+    <span class="item-unavailable">
+        <h5 class="supplying-title">
+            <span>
+                در‌حال تامین
+            </span>
+    </h5>
+    <p>این کالا فعلا موجود نیست.</p>
+    </span>
+</ng-template>

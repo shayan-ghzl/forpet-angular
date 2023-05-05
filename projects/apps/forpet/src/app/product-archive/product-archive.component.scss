@@ -1,32 +1,84 @@
-:host{
+:host {
     padding: 3rem 10%;
     display: block;
-    .entry-title{
+    .entry-title {
         margin-bottom: 36px;
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
-        h4, h6{
-            --forpet-heading-font-family:var(--bs-font-sans-serif);
+        h4,
+        h6 {
+            --forpet-heading-font-family: var(--bs-font-sans-serif);
         }
-        button{
-            --bs-btn-padding-x:2rem;
-            --bs-btn-hover-border-color:var(--bs-gray-500);
-            --bs-btn-border-color:var(--bs-gray-500);
-            --bs-btn-color:var(--bs-gray-900);
-            --bs-btn-font-weight:700;
-            &:active{
+        button {
+            --bs-btn-padding-x: 2rem;
+            --bs-btn-hover-border-color: var(--bs-gray-500);
+            --bs-btn-border-color: var(--bs-gray-500);
+            --bs-btn-color: var(--bs-gray-900);
+            --bs-btn-font-weight: 700;
+            &:active {
                 transform: scale(0.98);
             }
         }
     }
 }
-.product-list-wrapper{
+
+.product-list-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
-    app-product-card{
+    app-product-card {
         flex: 0 0 auto;
         width: calc(25% - 18px);
+    }
+}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {
+    .product-list-wrapper {
+        app-product-card {
+            width: calc(33.333333% - 16px);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+     :host {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+    .product-list-wrapper {
+        gap: 18px;
+        app-product-card {
+            width: calc(33.333333% - 12px);
+        }
+    }
+}
+
+@media (max-width: 676px) {
+     :host {
+        padding-top: 2rem;
+        .entry-title {
+            h4 {
+                font-size: 19px;
+            }
+            h6 {
+                font-size: 14px;
+            }
+        }
+    }
+    .product-list-wrapper {
+        app-product-card {
+            width: calc(50% - 9px);
+        }
+    }
+}
+
+@media (max-width: 430px) {
+    .product-list-wrapper {
+        app-product-card {
+            width: 100%;
+        }
     }
 }

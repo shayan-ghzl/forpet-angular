@@ -7,7 +7,6 @@ form {
         font-size: 16px;
         padding-left: 42px;
     }
-
     button {
         position: absolute;
         left: 0;
@@ -25,33 +24,29 @@ form {
     background-color: var(--forpet-color-dark-contrast);
     border: 1px solid var(--forpet-color-light-shade);
     border-radius: 5px;
-    z-index: 1;
-
+    z-index: 3;
     &.show {
         display: block;
     }
-
 }
 
 .suggestion-menu-wrapper {
     font-size: 13px;
-
     li {
         outline: none;
         &:not(:last-child) {
             border-bottom: 1px solid var(--forpet-color-light-shade);
         }
-
         &:not(.search-progress) {
             &:hover {
                 background-color: var(--forpet-color-light-shade);
             }
         }
-        &.active, &:focus{
+        &.active,
+        &:focus {
             background-color: var(--forpet-color-light-shade);
         }
     }
-
     a {
         display: flex;
         align-items: flex-start;
@@ -64,7 +59,6 @@ form {
 .search-progress {
     color: var(--forpet-color-tertiary);
     padding: 24px 10px;
-
     .spinner {
         margin: 0 auto;
     }
@@ -73,19 +67,15 @@ form {
 .suggestion-item-content {
     margin-right: 10px;
     color: var(--forpet-color-dark);
-
     p {
         margin-bottom: 0;
-
         &:last-child {
             font-size: 12px;
             margin-top: 4px;
         }
     }
-
     span {
         color: var(--forpet-color-tertiary-tint);
-
         &:not(:last-child) {
             &::after {
                 content: ' , ';

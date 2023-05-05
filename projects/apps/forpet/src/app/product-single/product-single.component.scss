@@ -1,15 +1,12 @@
 :host {
-    ::ng-deep {
+     ::ng-deep {
         @import "swiper/scss";
-
         // ---------------------------------
         .ngxImageZoomContainer {
             width: 100% !important;
             height: 0 !important;
             padding-top: 100%;
-
         }
-
         lib-ngx-image-zoom {
             img {
                 width: 100%;
@@ -22,7 +19,6 @@
                 // bottom: 0;
             }
         }
-
         swiper {
             border-radius: 10px;
             box-shadow: 0 0 3px #00000080;
@@ -36,12 +32,10 @@ section.product-interface {
     align-items: flex-start;
     column-gap: 24px;
     padding: 3rem 10%;
-
     .product-face {
         flex: 0 0 auto;
         width: 33.333333%;
     }
-
     .product-text {
         flex: 0 0 auto;
         width: calc(66.666666% - 24px);
@@ -50,12 +44,10 @@ section.product-interface {
 
 .gallery-container {
     margin-top: 16px;
-
     .gallery-wrapper {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-
         li {
             flex: 0 0 auto;
             width: calc(25% - 7.5px);
@@ -63,20 +55,16 @@ section.product-interface {
             border: 1px solid rgba(var(--forpet-color-medium-rgb), 0.3);
             border-radius: 8px;
             overflow: hidden;
-
             &.active {
                 border-color: var(--forpet-color-medium);
             }
         }
     }
-
     span {
         display: block;
         padding-top: 100%;
         position: relative;
-
     }
-
     img {
         position: absolute;
         top: 0;
@@ -89,7 +77,6 @@ section.product-interface {
 
 .add-to-card {
     width: 220px;
-
     button {
         --bs-btn-padding-y: 0;
         --bs-btn-padding-x: 0;
@@ -101,13 +88,11 @@ section.product-interface {
         overflow: hidden;
         white-space: nowrap;
     }
-
     span {
         &:first-child {
             display: block;
             margin-right: auto;
         }
-
         &:last-child {
             background-color: var(--forpet-color-success);
             color: var(--forpet-color-light);
@@ -125,18 +110,15 @@ section.product-interface {
         --forpet-heading-font-family: var(--bs-font-sans-serif);
         padding-bottom: 14px;
     }
-
     >div {
         display: flex;
         flex-direction: column;
         min-height: 245px;
     }
-
     .calculation {
         align-self: flex-end;
         margin-top: auto;
         text-align: left;
-
         .item-price {
             ins {
                 font-weight: 700;
@@ -147,34 +129,35 @@ section.product-interface {
             }
         }
     }
-
     .metadata-menu-wrapper {
         font-size: 13px;
-
         li {
             &:not(:first-child) {
                 margin-top: 6px;
             }
         }
     }
+    .stock {
+        font-weight: 700;
+        margin-top: 16px;
+        color: var(--bs-gray-600);
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 1200px) {}
 
 @media (max-width: 992px) {
-    :host swiper {
+     :host swiper {
         border-radius: 8px;
     }
-
     .gallery-container .gallery-wrapper li {
         width: calc(33.333333% - 6.666666px);
         border-radius: 7px;
     }
-
     section.product-interface .product-face {
         width: calc(40% - 12px);
     }
-
     section.product-interface .product-text {
         width: calc(60% - 12px)
     }
@@ -193,11 +176,9 @@ section.product-interface {
         row-gap: 24px;
         padding-top: 2rem;
     }
-
     section.product-interface .product-face {
         width: 100%;
     }
-
     section.product-interface .product-text {
         width: 100%;
     }

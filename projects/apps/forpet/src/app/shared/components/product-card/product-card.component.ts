@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Good } from '../../models/api-models';
 import { BasketService } from '../../services/basket.service';
 import { Subscription } from 'rxjs';
+import { environment } from 'projects/apps/forpet/src/environments/environment';
+import { FakeApiService } from '../../services/fake-api.service';
 
 @Component({
   selector: 'app-product-card',
@@ -13,17 +15,20 @@ export class ProductCardComponent {
   @Input() product!: Good;
   @Input() productCount = 0;
 
-  constructor(private basketService: BasketService) { }
+  constructor(
+    private basketService: BasketService,
+    private fakeApiService: FakeApiService,
+    ) { }
 
   basketUpdateSubscription!: Subscription;
   addToBasket(count: number) {
-    if (!this.product.userGroupPrice?.price) {
+    this.basketUpdateSubscription?.unsubscribe();
+    if (!this.product.userGroupPrice?.price && this.product.stock > 0) {
       return;
     }
     if (count == 1) {
       this.productCount = 1;
     }
-    this.basketUpdateSubscription?.unsubscribe();
     // question: why we are doing this instead of sending this.product ?
     // answer: in basket we do not have Good model, it is Product model so we are conver Good to Product below 
     let temp = {
@@ -39,8 +44,12 @@ export class ProductCardComponent {
       goodType: 0,
       technicalCode: this.product.technicalCode
     };
+    if (environment.useFakeApi) {
+      this.fakeApiService.fakeUpdateBasket(temp);
+    } else {
+      this.basketUpdateSubscription = this.basketService.updateBasket(temp).subscribe();
+    }
 
-    this.basketUpdateSubscription = this.basketService.updateBasket(temp).subscribe();
   }
 
   calculatePriceAfterDiscount(price: number, discount: number, quantity: number): number {

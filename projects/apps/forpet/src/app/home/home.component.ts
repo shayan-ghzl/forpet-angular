@@ -99,11 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private offlineStorageService: OfflineStorageService,
     private fakeApiService: FakeApiService,
   ) {
-    if (environment.useFakeApi) {
-      fakeApiService.getFakeBasketById().subscribe();
-    } else {
-      basketService.getBasketById().subscribe();
-    }
+
   }
 
   ngOnInit(): void {
@@ -119,11 +115,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     if (environment.useFakeApi) {
       this.getFakeGoods();
+      this.getFakeGoodGroups();
+      this.getFakeBrands();
     } else {
       this.getGoods();
+      this.getGoodGroups();
+      this.getBrands();
     }
-    this.getGoodGroups();
-    this.getBrands();
 
   }
 
@@ -145,12 +143,46 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
+  getFakeGoodGroups() {
+    this.subscription.add(
+      this.fakeApiService.getFakeGoodGroups().pipe(
+        finalize(() => {
+          this.hasCategoriesArrived = true;
+        })
+      ).subscribe({
+        next: (response) => {
+          this.categories = response.data;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      })
+    );
+  }
+
+  getFakeBrands() {
+    this.subscription.add(
+      this.fakeApiService.getFakeBrands().pipe(
+        finalize(() => {
+          this.hasBrandsArrived = true;
+        })
+      ).subscribe({
+        next: (response) => {
+          this.brands = response.data.data;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      })
+    );
+  }
+
   getGoods() {
     console.log('start getGoods');
     let temp = localStorage.getItem('time') || '0';
     this.offlineStorageService.getItems('products').then((value: Good[]) => {
       console.log('start offlineStorageService getGoods');
-      if (!isNaN(+temp) && Math.abs(+temp - new Date().getTime()) < 3600000) {
+      if (!isNaN(+temp) && Math.abs(+temp - new Date().getTime()) < 300000) {
         this.trendProducts = value;
         if (value.length != 0) {
           this.hasTrendProductsArrived = true;
@@ -185,12 +217,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getGoodGroups() {
     this.subscription.add(
-      this.apiService.getGoodGroups().pipe(
+      this.apiService.getGoodGroups({
+          page: 1,
+          per_page: 10,
+        }).pipe(
         finalize(() => {
           this.hasCategoriesArrived = true;
         })
       ).subscribe({
         next: (response) => {
+          console.log(response);
           this.categories = response.data;
           this.offlineStorageService.addItems('categories', <IGoodGroupDto[]>response.data).then((value) => {
             console.log(value, 'offlineStorageService addItems');
@@ -214,6 +250,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         })
       ).subscribe({
         next: (response) => {
+          console.log(response);
           this.brands = response.data.data;
           this.offlineStorageService.addItems('brands', <IBrandDto[]>response.data.data).then((value) => {
             console.log(value, 'offlineStorageService addItems');

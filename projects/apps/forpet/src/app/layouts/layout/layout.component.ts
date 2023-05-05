@@ -35,11 +35,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     private fakeApiService: FakeApiService,
     private basketService: BasketService,
   ) {
-    if (environment.useFakeApi) {
-      fakeApiService.getFakeBasketById().subscribe();
-    } else {
-      basketService.getBasketById().subscribe();
-    }
   }
 
   ngOnInit(): void {
