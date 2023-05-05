@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!environment.useFakeApi) {
+    if (environment.useLoginAuth) {
       const token = localStorage.getItem('ut');
       if (this.authenticationService.token || token) {
         request = request.clone({

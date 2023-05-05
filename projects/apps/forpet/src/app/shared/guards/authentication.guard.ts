@@ -15,7 +15,7 @@ export class AuthenticationGuard implements CanActivate {
   ) { }
 
   canActivate(): Observable<boolean> {
-    if (environment.useFakeApi) {
+    if (!environment.useLoginAuth) {
       return of(true);
     }
     return this.authenticationService.getCurrentUser().pipe(

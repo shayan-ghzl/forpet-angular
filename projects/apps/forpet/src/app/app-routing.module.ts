@@ -18,7 +18,7 @@ const loginGuardCanActivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  if (environment.useFakeApi) {
+  if (!environment.useLoginAuth) {
     return of(true);
   }
   const router = inject(Router);
@@ -38,7 +38,7 @@ const AuthGuardCanActivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  if (environment.useFakeApi) {
+  if (!environment.useLoginAuth) {
     return of(true);
   }
   const router = inject(Router);
@@ -53,7 +53,6 @@ const AuthGuardCanActivate: CanActivateFn = (
     })
   );
 }
-
 
 const routes: Routes = [
   {
