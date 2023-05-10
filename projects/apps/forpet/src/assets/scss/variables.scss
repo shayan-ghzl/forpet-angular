@@ -144,9 +144,16 @@
     --bs-body-line-height: 1.5;
     --bs-link-color: var(--forpet-color-tertiary-tint);
     --bs-link-hover-color: var(--forpet-color-tertiary-shade);
-    --bs-body-text-align: right;
     --bs-code-color: #d63384;
     --bs-highlight-bg: #fff3cd;
+}
+
+.rtl{
+    --bs-body-text-align: right;
+}
+
+.ltr{
+    --bs-body-text-align: left;
 }
 
 @media (prefers-color-scheme: dark) {}

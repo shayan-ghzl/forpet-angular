@@ -10,9 +10,12 @@ address {
   margin-bottom: 1rem;
 }
 
-ol,
-ul {
+.rtl ol, .rtl ul{
   padding-right: 2rem;
+}
+
+.ltr ol, .ltr ul{
+  padding-left: 2rem;
 }
 
 ol,
@@ -31,7 +34,14 @@ ul ol {
 
 dd {
   margin-bottom: 0.5rem;
+}
+
+.rtl dd{
   margin-right: 0;
+}
+
+.ltr dd{
+  margin-left: 0;
 }
 
 blockquote {

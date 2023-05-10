@@ -114,8 +114,16 @@ legend {
   width: 100%;
 }
 
+.ltr legend {
+  float: left;
+}
+
 legend+* {
   clear: right;
+}
+
+.ltr legend+* {
+  clear: left;
 }
 
 [type=search] {

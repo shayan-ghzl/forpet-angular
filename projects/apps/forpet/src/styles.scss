@@ -4,7 +4,7 @@
 @import "./assets/fonts/font-icon/dashicons.scss";
 @import "./assets/fonts/font-icon/icomoon.scss";
 @import "./assets/scss/variables.scss";
-@import "./assets/scss/reset-styles/bootstrap-reboot.rtl.scss";
+@import "./assets/scss/reset-styles/bootstrap-reboot.scss";
 @import "./assets/scss/btn.scss";
 @import "./assets/scss/form.scss";
 // @import "./assets/scss/table.scss";
@@ -18,5 +18,5 @@ a{
 ul{
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0 !important;
 }
