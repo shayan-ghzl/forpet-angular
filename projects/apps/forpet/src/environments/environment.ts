@@ -3,6 +3,6 @@ export const environment = {
     // apiUrl: 'https://clientapi.raapyadak.com/api/',
     apiUrl: 'https://api.forpetesf.com/api/',
     emptyGuid: '00000000-0000-0000-0000-000000000000',
-    useFakeApi: false,
+    useFakeApi: true,
     useLoginAuth: false,
 };
