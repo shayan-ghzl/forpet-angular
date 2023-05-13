@@ -1,0 +1,154 @@
+.mat-mdc-snack-bar-container {
+    --mat-mdc-snack-bar-button-color: #ff4081;
+    --mdc-snackbar-container-color: #333333;
+    --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, .87)
+}
+
+.mat-mdc-snack-bar-container {
+    --mdc-snackbar-supporting-text-font: "Samim", Samim;
+    --mdc-snackbar-supporting-text-line-height: 20px;
+    --mdc-snackbar-supporting-text-size: 14px;
+    --mdc-snackbar-supporting-text-weight: 400
+}
+
+.mat-mdc-button.mat-unthemed {
+    --mdc-text-button-label-text-color: #000
+}
+
+.mat-mdc-unelevated-button.mat-unthemed {
+    --mdc-filled-button-container-color: #fff;
+    --mdc-filled-button-label-text-color: #000
+}
+
+.mat-mdc-raised-button.mat-unthemed {
+    --mdc-protected-button-container-color: #fff;
+    --mdc-protected-button-label-text-color: #000
+}
+
+.mat-mdc-outlined-button.mat-unthemed {
+    --mdc-outlined-button-label-text-color: #000
+}
+
+.mat-mdc-fab.mat-unthemed,
+.mat-mdc-mini-fab.mat-unthemed {
+    --mdc-fab-container-color: #fff;
+    --mdc-fab-icon-color: #000;
+    --mat-mdc-fab-color: #000
+}
+
+.mat-mdc-button.mat-unthemed {
+    --mdc-text-button-label-text-color: #000
+}
+
+.cdk-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    left: 0;
+}
+
+[dir="rtl"] .cdk-visually-hidden {
+    left: auto;
+    right: 0;
+}
+
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 1000;
+}
+
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+}
+
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.cdk-overlay-pane {
+    position: absolute;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.mat-snack-bar-container {
+    color: var(--mdc-snackbar-supporting-text-color);
+    background: var(--mdc-snackbar-container-color);
+    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+}
+
+.mat-simple-snackbar {
+    font-family: var(--mdc-snackbar-supporting-text-font);
+    font-size: var(--mdc-snackbar-supporting-text-size);
+}
+
+.mat-simple-snackbar-action {
+    color: var(--mat-mdc-snack-bar-button-color);
+}
+
+.mat-simple-snackbar-action {
+    line-height: 1;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+}
+
+.mat-ripple {
+    overflow: hidden;
+    position: relative;
+}
+
+.mat-button-focus-overlay {
+    background: #000;
+}
+
+// ----------custom-style start----------
+.snack-success {
+    --mdc-snackbar-container-color: #28a745;
+    --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, .87);
+}
+
+.snack-warning {
+    --mdc-snackbar-container-color: #ffc107;
+    --mdc-snackbar-supporting-text-color: rgba(0, 0, 0, .87);
+}
+
+.snack-danger {
+    --mdc-snackbar-container-color: #dc3545;
+    --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, .87);
+}
+
+.mat-mdc-snack-bar-container {
+    margin-bottom: 68px !important;
+}
+
+// ----------custom-style end----------

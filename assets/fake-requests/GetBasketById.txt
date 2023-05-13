@@ -1,0 +1,35 @@
+{
+    "id": "840ef999-fda0-4dd7-bc1f-5cfe8b177ceb",
+    "basketItems": [
+        {
+            "id": "b6912890-ac2d-ed11-b69c-86aaf709e86a",
+            "goodName": "* گیت سوپاپ پراید ساوه",
+            "goodPageUrl": "",
+            "brandName": "ساوه",
+            "price": 1550000,
+            "discount": 0,
+            "finalPrice": 1550000,
+            "count": 4,
+            "imageUrl": "",
+            "technicalCode": "0",
+            "goodType": 0
+        },
+        {
+            "id": "f56c2af5-454d-ec11-b694-b2d24167b1eb",
+            "goodName": "* خار آمپولی (پرچی) ",
+            "goodPageUrl": null,
+            "brandName": "",
+            "price": 10000,
+            "discount": 0,
+            "finalPrice": 10000,
+            "count": 1,
+            "imageUrl": "https://m.media-amazon.com/images/M/MV5BZDBkZjRiNGMtZGU2My00ODdkLWI0MGYtNGU4MmJjN2MzOTkxXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+            "technicalCode": "1090101",
+            "goodType": 0
+        }
+    ],
+    "totalSum": "۶,۲۱۰,۰۰۰ تومان",
+    "totalCount": "5 عدد",
+    "totalDiscount": "0",
+    "totalPureSum": "6,210,000"
+}

@@ -1,0 +1,106 @@
+{
+    "data": {
+        "data": [
+            {
+                "name": "ایساکو",
+                "nameEn": null,
+                "image": null,
+                "code": "001",
+                "description": null,
+                "term": null,
+                "termId": 1,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 1
+            },
+            {
+                "name": "سایپا",
+                "nameEn": null,
+                "image": null,
+                "code": "002",
+                "description": null,
+                "term": null,
+                "termId": 1,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 2
+            },
+            {
+                "name": "دیناپارت",
+                "nameEn": null,
+                "image": null,
+                "code": "003",
+                "description": null,
+                "term": null,
+                "termId": 6,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 3
+            },
+            {
+                "name": "کاوج",
+                "nameEn": null,
+                "image": null,
+                "code": "004",
+                "description": null,
+                "term": null,
+                "termId": 4,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 4
+            },
+            {
+                "name": "مدرن",
+                "nameEn": null,
+                "image": null,
+                "code": "005",
+                "description": null,
+                "term": null,
+                "termId": 3,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 5
+            },
+            {
+                "name": "جمع ساز",
+                "nameEn": null,
+                "image": null,
+                "code": "006",
+                "description": null,
+                "term": null,
+                "termId": 2,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 6
+            },
+            {
+                "name": "مهر خواه",
+                "nameEn": null,
+                "image": null,
+                "code": "007",
+                "description": null,
+                "term": null,
+                "termId": 3,
+                "pageUrl": null,
+                "pageTitle": null,
+                "pageDescription": null,
+                "id": 7
+            }
+        ],
+        "page": 0,
+        "totalCount": 413,
+        "totalSum": 0,
+        "totalSumDebtor": 0,
+        "totalSumCreditor": 0,
+        "totalBalance": 0,
+        "totalBalanceBefore": 0
+    },
+    "issuccess": true,
+    "statuscode": 200
+}
